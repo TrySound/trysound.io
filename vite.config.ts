@@ -23,12 +23,15 @@ const blog = (): Plugin => {
       };
     },
 
-    async transformIndexHtml(html) {
-      const header = await readFile("./_header.html", "utf-8");
-      const footer = await readFile("./_footer.html", "utf-8");
-      return html
-        .replaceAll("{{header}}", header)
-        .replaceAll("{{footer}}", footer);
+    transformIndexHtml: {
+      order: "pre",
+      handler: async (html) => {
+        const header = await readFile("./_header.html", "utf-8");
+        const footer = await readFile("./_footer.html", "utf-8");
+        return html
+          .replaceAll("{{header}}", header)
+          .replaceAll("{{footer}}", footer);
+      },
     },
 
     configureServer(server) {

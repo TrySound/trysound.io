@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/index.css" />
+    <title>Building design tokens app by TrySound</title>
+  </head>
+  <body>
+    {{header}}
+
+    <main class="page-main">
+      <h2 class="page-title">Building design tokens app</h2>
+
+      <div class="notes-grid">
+        <section class="note span-4">
+          <p>
+            I’ve never been great at design systems. Probably because, with a
+            lack of designers on the team, I ended up building component
+            libraries and reusing a few (hundred) style values. When DTCG
+            released a stable design tokens specification, I got very excited
+            and couldn’t stop myself from creating an app around it. It felt
+            like a great opportunity to learn design systems.
+          </p>
+        </section>
+
+        <section class="note span-2">
+          <p>
+            I have been building UI for the Web at
+            <a href="https://webstudio.is">Webstudio</a> for three years.
+          </p>
+        </section>
+
+        <section class="note span-3">
+          <p>
+            Using opencode for rapid prototyping and Svelte as a lightweight
+            framework (already worked with it), I made a simple two-pane UI: a
+            tokens tree on the left and generated CSS variables on the right. AI
+            helps a ton with moving forward from blank pages.
+          </p>
+          <img width="1910" height="1222" src="./prototype.webp" />
+        </section>
+
+        <section class="note span-3">
+          <p>
+            While I was working on the prototype, Adam Argyle released a great
+            new
+            <a href="https://github.com/argyleink/css-color-component"
+              >color picker</a
+            >
+            with all modern color spaces supported in CSS. By the way, the
+            design tokens specification relies on those exact color spaces for
+            color tokens. Perfect timing.
+          </p>
+          <img
+            loading="lazy"
+            width="1010"
+            height="800"
+            src="./color-picker.webp"
+          />
+        </section>
+
+        <div class="span-1"></div>
+
+        <section class="note span-2">
+          <p>
+            color-input uses super cool
+            <a href="https://colorjs.io">colorjs.io</a> library, which I had
+            never found before because I was spelling it wrong when searching :)
+          </p>
+        </section>
+
+        <section class="note span-2">
+          <p>
+            Then I rebuilt the tree again. I relied heavily on the
+            <a href="https://www.w3.org/WAI/ARIA/apg/patterns/treeview/"
+              >WAI-ARIA</a
+            >
+            recommendations and Adam Argyle’s advice to always support
+            multi-select. Drag-and-drop is still tricky, especially choosing the
+            right parent to drop into, need to make it more intuitive.
+          </p>
+        </section>
+
+        <section class="note span-4">
+          <p>
+            Now we have a token editor and CSS/JSON preview. That’s good for
+            coding but not for visual exploration. We need to generate a style
+            guide from these tokens. I could ask AI to generate style guides,
+            but instead I asked it to generate a style guide generator. And it
+            did. I’m especially happy with the cubic-bezier preview. Would reuse
+            it for bezier editor later.
+          </p>
+          <img
+            loading="lazy"
+            width="2114"
+            height="1686"
+            src="./styleguide.webp"
+          />
+        </section>
+
+        <section class="note span-2">
+          <p>
+            For UI components, I decided to go with HTML. Yeah, it got a lot of
+            good stuff recently.
+          </p>
+          <ul>
+            <li>
+              Popover API for the app menu, adding tokens, and the token editor
+            </li>
+            <li>The dialog element for “About” info</li>
+            <li>Invokers for declarative opening of dialogs and popovers</li>
+            <li>Will definitely use interest invokers for tooltips</li>
+          </ul>
+          <p>
+            These are very easy to polyfill, except for anchor positioning, but
+            I worked around that with a custom
+            <a href="https://github.com/floating-ui/floating-ui">floating-ui</a>
+            setup.
+          </p>
+        </section>
+
+        <div class="span-1"></div>
+
+        <section class="note span-4">
+          <p>
+            While researching I read a ton about design systems, especially
+            recommend
+            <a href="https://bradfrost.com">Brad Frost’s book and articles</a>.
+            That’s where I learned how essential token aliasing is. One great
+            concept is a 3-tier token architecture with arbitrary, semantic, and
+            component values, where each layer maps to the next. The design
+            tokens specification offers a few options for this. One is the
+            “extends” syntax like {{path.to.my.token}} (already supported in
+            this app), another uses JSON Schema refs (which I find tricky to use
+            in a UI).
+          </p>
+        </section>
+
+        <div class="span-1"></div>
+        <div class="span-1"></div>
+
+        <section class="note span-2">
+          <p>
+            By the way, I called this tool <strong>Engramma</strong>. I wanted
+            an original name, so I borrowed it from one of my favorite games and
+            used the Italian variant. You can check it out at
+            <a href="https://engramma.dev">engramma.dev</a>.
+          </p>
+        </section>
+
+        <section class="note span-2">
+          <p>
+            From the start, the project has been completely open source, and I’m
+            posting progress everywhere Reddit can’t block me (yep, they’re
+            super unfriendly to new users). You can check it out on
+            <a href="https://github.com/TrySound/engramma">Github</a>.
+          </p>
+        </section>
+
+        <section class="note span-6">
+          <p>
+            What’s next? I’ll keep improving the tool and start using it for new
+            projects. The closest ideas to implement:
+          </p>
+          <ul>
+            <li>
+              Resolver specification to enable defining tokens for different
+              themes and color schemes
+            </li>
+            <li>Synchronize tokens with project code</li>
+            <li>
+              Explore connecting with external graphic editors and website
+              builders
+            </li>
+          </ul>
+          <img
+            loading="lazy"
+            width="2064"
+            height="1422"
+            src="./engramma.webp"
+          />
+        </section>
+      </div>
+    </main>
+
+    {{footer}}
+
+    <script type="module" src="/index.js"></script>
+  </body>
+</html>

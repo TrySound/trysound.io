@@ -1,0 +1,33 @@
+{
+  "packageManager": "pnpm@10.20.0",
+  "engines": {
+    "node": "22"
+  },
+  "name": "trysound",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.svg",
+        "options": {
+          "parser": "html"
+        }
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "powerglitch": "^2.5.0",
+    "prettier": "^3.7.4",
+    "vite": "^6.4.1"
+  }
+}

@@ -26,15 +26,18 @@ const blog = (): Plugin => {
     transformIndexHtml: {
       order: "pre",
       handler: async (html) => {
+        const meta = await readFile("./_meta.html", "utf-8");
         const header = await readFile("./_header.html", "utf-8");
         const footer = await readFile("./_footer.html", "utf-8");
         return html
+          .replaceAll("{{meta}}", meta)
           .replaceAll("{{header}}", header)
           .replaceAll("{{footer}}", footer);
       },
     },
 
     configureServer(server) {
+      server.watcher.add(`_meta.html`);
       server.watcher.add(`_header.html`);
       server.watcher.add(`_footer.html`);
     },

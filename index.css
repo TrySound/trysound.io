@@ -179,16 +179,16 @@ h6 {
   overflow: clip;
 
   &:nth-child(4n + 1) {
-    transform: rotate(-0.75deg);
+    transform: rotate(-0.5deg);
   }
   &:nth-child(4n + 2) {
-    transform: rotate(0.3deg);
+    transform: rotate(0.2deg);
   }
   &:nth-child(4n + 3) {
-    transform: rotate(-0.3deg);
+    transform: rotate(-0.2deg);
   }
   &:nth-child(4n + 4) {
-    transform: rotate(0.75deg);
+    transform: rotate(0.5deg);
   }
 
   /* note paper background */

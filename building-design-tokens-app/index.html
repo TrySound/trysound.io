@@ -37,28 +37,41 @@
       <div class="notes-grid">
         <section class="note span-4">
           <p>
-            I’ve never been great at design systems. Probably because, with a
-            lack of designers on the team, I ended up building component
-            libraries and reusing a few (hundred) style values. When DTCG
-            released a stable design tokens specification, I got very excited
-            and couldn’t stop myself from creating an app around it. It felt
-            like a great opportunity to learn design systems.
+            I've been doing frontend profesionally for 13 years though never
+            been great at design systems. Probably because, with a lack of
+            designers on the team, I ended up building component libraries and
+            reusing a few (hundred) style values.
           </p>
+          <p>
+            When DTCG released a stable design tokens specification, I got very
+            excited how expressive and more complex it become comparing to
+            previous iterations. So couldn’t stop myself from creating an app
+            around it. Especially since I got a lot of experience building UI
+            for web at Webstudio for the last three years and needed to put
+            ideas into something new.
+          </p>
+          <p>It also felt like a great opportunity to learn design systems.</p>
         </section>
 
         <section class="note span-2">
           <p>
-            I have been building UI for the Web at
-            <a href="https://webstudio.is">Webstudio</a> for three years.
+            What are design tokens? I'd call them smallest pieces of visual
+            work. Colors, sizes and typography.
+            <a href="https://www.designtokens.org">
+              Design Tokens Community Group (DTCG)
+            </a>
+            formalized design tokens as specification to unify them across
+            different tools and platforms. Stable version made it even more
+            strict and less CSS-like.
           </p>
         </section>
 
-        <section class="note span-3">
+        <section class="note span-4">
           <p>
             Using opencode for rapid prototyping and Svelte as a lightweight
             framework (already worked with it), I made a simple two-pane UI: a
             tokens tree on the left and generated CSS variables on the right. AI
-            helps a ton with moving forward from blank pages.
+            helps a ton with moving forward from "blank pages".
           </p>
           <img
             width="1910"
@@ -68,16 +81,33 @@
           />
         </section>
 
-        <section class="note span-3">
+        <section class="note span-2">
+          <p>
+            From the start, the project has been completely open source, and I’m
+            posting progress everywhere Reddit can’t block me (yep, they’re
+            super unfriendly to new users). You can check it out on
+            <a href="https://github.com/TrySound/engramma">GitHub</a>.
+          </p>
+        </section>
+
+        <section class="note span-4">
           <p>
             While I was working on the prototype, Adam Argyle released a great
             new
             <a href="https://github.com/argyleink/css-color-component"
               >color picker</a
             >
-            with all modern color spaces supported in CSS. By the way, the
-            design tokens specification relies on those exact color spaces for
-            color tokens. Perfect timing.
+            with all modern color spaces like OKLCH, LAB etc. supported in CSS.
+            By the way, the design tokens specification relies on those exact
+            color spaces for color tokens. Perfect timing.
+          </p>
+          <p>
+            Besides picking colors, I still needed a way to parse them and
+            convert them to the DTCG color format, so I needed a solid library
+            to avoid getting lost in color specifications. color-input uses the
+            super cool <a href="https://colorjs.io">colorjs.io</a> library. I’ve
+            been hearing about it for years but never found it before, because I
+            was spelling it wrong when searching :)
           </p>
           <img
             loading="lazy"
@@ -88,47 +118,19 @@
           />
         </section>
 
-        <div class="span-1"></div>
-
-        <section class="note span-2">
-          <p>
-            color-input uses super cool
-            <a href="https://colorjs.io">colorjs.io</a> library, which I had
-            never found before because I was spelling it wrong when searching :)
-          </p>
-        </section>
-
         <section class="note span-2">
           <p>
             Then I rebuilt the tree again. I relied heavily on the
-            <a href="https://www.w3.org/WAI/ARIA/apg/patterns/treeview/"
-              >WAI-ARIA</a
-            >
+            <a href="https://www.w3.org/WAI/ARIA/apg/patterns/treeview/">
+              WAI-ARIA
+            </a>
             recommendations and Adam Argyle’s advice to always support
-            multi-select. Drag-and-drop is still tricky, especially choosing the
-            right parent to drop into, need to make it more intuitive.
+            multi-select.
           </p>
-        </section>
-
-        <section class="note span-4">
           <p>
-            Now we have a token editor and CSS/JSON preview. That’s good for
-            coding but not for visual exploration. We need to generate a style
-            guide from these tokens. I could ask AI to generate style guides,
-            but instead I asked it to generate a style guide generator. And it
-            did. I’m especially happy with the cubic-bezier preview. Would reuse
-            it for bezier editor later.
+            Drag-and-drop is still tricky, especially choosing the right parent
+            to drop into, need to make it more intuitive.
           </p>
-          <img
-            loading="lazy"
-            width="2114"
-            height="1686"
-            src="./styleguide.webp"
-            alt="Generated style guide preview based on design tokens"
-          />
-        </section>
-
-        <section class="note span-2">
           <p>
             For UI components, I decided to go with HTML. Yeah, it got a lot of
             good stuff recently.
@@ -149,7 +151,38 @@
           </p>
         </section>
 
-        <div class="span-1"></div>
+        <section class="note span-4">
+          <p>
+            Now we have a token editor and CSS/JSON preview. That’s good for
+            coding but not for visual exploration.
+          </p>
+          <p>
+            What would be useful is an automatically generated style guide based on
+            design tokens. All these values can be rendered as widgets and
+            placed on one page for designers to overview.
+          </p>
+          <p>
+            There were a few ideas suggested on socials though already liking
+            the progress. I’m especially happy with the cubic-bezier preview.
+            Would reuse it for bezier editor later.
+          </p>
+          <img
+            loading="lazy"
+            width="2114"
+            height="1686"
+            src="./styleguide.webp"
+            alt="Generated style guide preview based on design tokens"
+          />
+        </section>
+
+        <section class="note span-2">
+          <p>
+            What about AI? Can design tokens improve the results of generated
+            websites and applications? Experience shows, the more specific
+            your question - the better the results you get. Design tokens might
+            help a lot with this, and I’m going to explore this later.
+          </p>
+        </section>
 
         <section class="note span-4">
           <p>
@@ -157,17 +190,18 @@
             recommend
             <a href="https://bradfrost.com">Brad Frost’s book and articles</a>.
             That’s where I learned how essential token aliasing is. One great
-            concept is a 3-tier token architecture with arbitrary, semantic, and
-            component values, where each layer maps to the next. The design
-            tokens specification offers a few options for this. One is the
-            “extends” syntax like {{path.to.my.token}} (already supported in
-            this app), another uses JSON Schema refs (which I find tricky to use
-            in a UI).
+            concept is a 3-tier token architecture which defines arbitrary,
+            semantic, and component values, where each layer maps to the next.
+            For example arbitrary color-blue-100 can be aliased to semantic
+            text-color-primary which maps to button-text-color.
+          </p>
+          <p>
+            The design tokens specification offers a few options for this. One
+            is the “extends” syntax like {{path.to.my.token}} (I use this one in
+            the app), another uses JSON Schema refs (which I find trickier to
+            represent in a UI).
           </p>
         </section>
-
-        <div class="span-1"></div>
-        <div class="span-1"></div>
 
         <section class="note span-2">
           <p>
@@ -178,31 +212,28 @@
           </p>
         </section>
 
-        <section class="note span-2">
-          <p>
-            From the start, the project has been completely open source, and I’m
-            posting progress everywhere Reddit can’t block me (yep, they’re
-            super unfriendly to new users). You can check it out on
-            <a href="https://github.com/TrySound/engramma">Github</a>.
-          </p>
-        </section>
-
-        <section class="note span-6">
+        <section class="note span-4">
           <p>
             What’s next? I’ll keep improving the tool and start using it for new
-            projects. The closest ideas to implement:
+            projects. Here are the closest ideas to implement:
           </p>
           <ul>
             <li>
-              Resolver specification to enable defining tokens for different
-              themes and color schemes
+              A resolver specification that extends the DTCG format with “Sets”
+              and “Modifiers” to enable defining tokens for different themes,
+              modes, color schemes, and breakpoints
             </li>
             <li>Synchronize tokens with project code</li>
             <li>
-              Explore connecting with external graphic editors and website
+              Explore integrations with external graphic editors and website
               builders
             </li>
           </ul>
+          <p>
+            If you work with design systems, I’d love your feedback on
+            Engramma—try it at <a href="https://engramma.dev">engramma.dev</a>,
+            import your JSON with tokens, and tell me what’s missing.
+          </p>
           <img
             loading="lazy"
             width="2064"

@@ -29,41 +29,48 @@
       <h2 class="page-title">Building design tokens app</h2>
 
       <div class="notes-grid">
-        <section class="note span-4">
+        <section class="note span-3">
           <p>
-            I've been doing frontend profesionally for 13 years though never
-            been great at design systems. Probably because, with a lack of
-            designers on the team, I ended up building component libraries and
-            reusing a few (hundred) style values.
+            Working on a large project requires a systematic design approach to
+            keep the user interface consistent. Often, this system is
+            implemented as a set of pre-styled components or UI kits.
           </p>
           <p>
-            When DTCG released a stable design tokens specification, I got very
-            excited how expressive and more complex it become comparing to
-            previous iterations. So couldn’t stop myself from creating an app
-            around it. Especially since I got a lot of experience building UI
-            for web at
-            <a target="_blank" href="https://webstudio.is">Webstudio</a> for the
-            last three years and needed to put ideas into something new.
+            The smallest piece of a design system is a token: a color, size, or
+            typography configuration reusable across different components. In UI
+            kits, themes with dozens of values are similar to tokens. You can
+            override a theme and have your components updated. However, once a
+            project matures, the theme may contain hundreds of values, and
+            without a strong system, they become unmanageable.
           </p>
-          <p>It also felt like a great opportunity to learn design systems.</p>
         </section>
 
-        <section class="note span-2">
+        <section class="note span-3">
           <p>
-            What are design tokens? I'd call them smallest pieces of visual
-            work. Colors, sizes and typography.
+            A few years ago, a community of designers and developers (Design
+            Tokens Community Group or DTCG) decided to formalize how design
+            tokens are defined and exchanged across tools and platforms.
+            Recently, they released
             <a target="_blank" href="https://www.designtokens.org">
-              Design Tokens Community Group (DTCG)
-            </a>
-            formalized design tokens as specification to unify them across
-            different tools and platforms. Stable version made it even more
-            strict and less CSS-like.
+              a stable design tokens format specification</a
+            >, with strict types and more unified (less CSS-like) definitions.
+          </p>
+          <p>
+            And I was very excited by how expressive it is compared to previous
+            iterations and couldn’t stop myself from creating an app around it.
+            Especially since I have a lot of experience building UI for web at
+            <a target="_blank" href="https://webstudio.is">Webstudio</a> over
+            the last three years and wanted to channel those ideas into
+            something new.
+          </p>
+          <p>
+            It felt like a great opportunity to get better at design systems.
           </p>
         </section>
 
         <section class="note span-4">
           <p>
-            Using opencode for rapid prototyping and Svelte as a lightweight
+            Using OpenCode for rapid prototyping and Svelte as a lightweight
             framework (already worked with it), I made a simple two-pane UI: a
             tokens tree on the left and generated CSS variables on the right. AI
             helps a ton with moving forward from "blank pages".
@@ -78,12 +85,18 @@
 
         <section class="note span-2">
           <p>
-            From the start, the project has been completely open source, and I’m
-            posting progress everywhere Reddit can’t block me (yep, they’re
-            super unfriendly to new users). You can check it out on
-            <a target="_blank" href="https://github.com/TrySound/engramma"
-              >GitHub</a
-            >.
+            Tokens tree on the left is custom-built. I relied heavily on the
+            <a
+              target="_blank"
+              href="https://www.w3.org/WAI/ARIA/apg/patterns/treeview/"
+            >
+              WAI-ARIA
+            </a>
+            recommendations and on Adam Argyle’s advice to always support
+            multi-select, based on his experience working on
+            <a target="_blank" href="https://visbug.web.app/">VizBug</a>.
+            Multi-select can be useful for bulk deleting or moving items into
+            another folder with fewer repetitive actions.
           </p>
         </section>
 
@@ -121,21 +134,6 @@
 
         <section class="note span-2">
           <p>
-            Then I rebuilt the tree again. I relied heavily on the
-            <a
-              target="_blank"
-              href="https://www.w3.org/WAI/ARIA/apg/patterns/treeview/"
-            >
-              WAI-ARIA
-            </a>
-            recommendations and Adam Argyle’s advice to always support
-            multi-select.
-          </p>
-          <p>
-            Drag-and-drop is still tricky, especially choosing the right parent
-            to drop into, need to make it more intuitive.
-          </p>
-          <p>
             For UI components, I decided to go with HTML. Yeah, it got a lot of
             good stuff recently.
           </p>
@@ -162,18 +160,18 @@
 
         <section class="note span-4">
           <p>
-            Now we have a token editor and CSS/JSON preview. That’s good for
-            coding but not for visual exploration.
+            Now we have a token editor and a CSS/JSON preview. That’s useful for
+            coding, but not for visual exploration.
           </p>
           <p>
-            What would be useful is an automatically generated style guide based
-            on design tokens. All these values can be rendered as widgets and
-            placed on one page for designers to overview.
+            What would be more helpful is an automatically generated style guide
+            based on design tokens. All these values could be rendered as
+            widgets and placed on a single page for designers to browse.
           </p>
           <p>
-            There were a few ideas suggested on socials though already liking
-            the progress. I’m especially happy with the cubic-bezier preview.
-            Would reuse it for bezier editor later.
+            There’s still room for improvement, though I already like the
+            progress. Especially happy with the cubic-bezier preview, planning
+            to reuse it for a bezier editor later.
           </p>
           <img
             loading="lazy"
@@ -187,9 +185,10 @@
         <section class="note span-2">
           <p>
             What about AI? Can design tokens improve the results of generated
-            websites and applications? Experience shows, the more specific your
-            question - the better the results you get. Design tokens might help
-            a lot with this, and I’m going to explore this later.
+            websites and applications? Experience shows that the more specific
+            your question is, the better the results you get. Design tokens
+            could help a lot with this, and it may be interesting to explore
+            later.
           </p>
         </section>
 
@@ -198,18 +197,50 @@
             While researching I read a ton about design systems, especially
             recommend
             <a target="_blank" href="https://bradfrost.com">
-              Brad Frost’s book and articles </a
+              Brad Frost’s book and articles</a
             >. That’s where I learned how essential token aliasing is. One great
             concept is a 3-tier token architecture which defines arbitrary,
             semantic, and component values, where each layer maps to the next.
-            For example arbitrary color-blue-100 can be aliased to semantic
-            text-color-primary which maps to button-text-color.
           </p>
+          <ul>
+            <li>
+              Tier 1 tokens define all available values in the design system,
+              such as color-blue-100 or color-white.
+            </li>
+            <li>
+              Tier 2 tokens map Tier 1 tokens to semantic roles in the UI, for
+              example text-color-primary or color-border-destructive.
+            </li>
+            <li>
+              Tier 3 tokens are component-specific, such as button-bg-color or
+              heading-text-color.
+            </li>
+          </ul>
+          <p>
+            This component-specific tier can be leveraged even further by
+            rendering a combination of these tokens as a component widget in
+            Style Guide.
+          </p>
+        </section>
+
+        <section class="note span-2">
           <p>
             The design tokens specification offers a few options for this. One
-            is the “extends” syntax like {{path.to.my.token}} (I use this one in
-            the app), another uses JSON Schema refs (which I find trickier to
-            represent in a UI).
+            is the
+            <a
+              target="_blank"
+              href="https://www.designtokens.org/tr/2025.10/format/#references-and-json-pointer-integration"
+            >
+              token reference
+            </a>
+            syntax (I use this one in the app), another uses
+            <a
+              target="_blank"
+              href="https://www.designtokens.org/tr/2025.10/format/#json-pointer-support"
+            >
+              JSON Schema Pointer
+            </a>
+            (which I find trickier to represent in a UI).
           </p>
         </section>
 
@@ -220,6 +251,14 @@
             used the Italian variant. You can check it out at
             <a target="_blank" href="https://engramma.dev">engramma.dev</a>.
           </p>
+          <p>
+            From the start, the project has been completely open source, and I’m
+            posting progress everywhere Reddit can’t block me (yep, they’re
+            super unfriendly to new users). You can check it out on
+            <a target="_blank" href="https://github.com/TrySound/engramma"
+              >GitHub</a
+            >.
+          </p>
         </section>
 
         <section class="note span-4">
@@ -229,13 +268,13 @@
           </p>
           <ul>
             <li>
-              A resolver specification that extends the DTCG format with “Sets”
-              and “Modifiers” to enable defining tokens for different themes,
-              modes, color schemes, and breakpoints
+              Themes and light/dark modes support based on "Resolver"
+              specification that extends the DTCG format with “Sets” and
+              “Modifiers” to partially override values while reusing others.
             </li>
             <li>Synchronize tokens with project code</li>
             <li>
-              Explore integrations with external graphic editors and website
+              Explore integrations with external graphics editors and website
               builders
             </li>
           </ul>

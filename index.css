@@ -24,6 +24,7 @@
   /* semantic tier */
   --page-font: var(--humanist-font-stack);
   --page-font-size: var(--font-size-200);
+  --page-line-height: 1.5;
   --text-primary: var(--yellow-100);
   --text-secondary: var(--blue-100);
   --text-muted: var(--blue-200);
@@ -57,6 +58,7 @@ body {
 
   font-family: var(--page-font);
   font-size: var(--page-font-size);
+  line-height: var(--page-line-height);
   background: var(--bg-secondary);
   color: var(--text-secondary);
 }

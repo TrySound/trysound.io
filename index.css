@@ -8,6 +8,7 @@
     Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans", source-sans-pro,
     sans-serif;
   --yellow-100: oklch(76% 17% 94);
+  --blue-50: oklch(75% 8% 261);
   --blue-100: oklch(75% 8% 261);
   --blue-200: oklch(55% 10% 261);
   --blue-800: oklch(20% 10% 260);
@@ -27,7 +28,7 @@
   --page-line-height: 1.5;
   --text-primary: var(--yellow-100);
   --text-secondary: var(--blue-100);
-  --text-muted: var(--blue-200);
+  --text-active: var(--blue-50);
   --bg-secondary: var(--blue-900);
   --bg-secondary-hover: var(--blue-800);
   --page-width: var(--size-900);
@@ -63,9 +64,13 @@ body {
   color: var(--text-secondary);
 }
 
-a {
+a,
+.text-button {
   color: inherit;
   text-underline-offset: 4px;
+  &:hover {
+    color: var(--text-active);
+  }
 }
 
 h1,
@@ -75,6 +80,13 @@ h4,
 h5,
 h6 {
   font-weight: normal;
+}
+
+.text-button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-decoration: underline;
 }
 
 .page-header {
@@ -117,7 +129,6 @@ h6 {
   padding-inline: var(--page-padding-inline);
   padding-block: var(--page-padding-block);
   font-size: var(--page-footer-font-size);
-  color: var(--text-muted);
   text-align: center;
 }
 

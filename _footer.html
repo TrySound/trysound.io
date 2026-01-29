@@ -1,10 +1,44 @@
 <footer class="page-footer">
-  Built by
-  <a target="_blank" href="https://www.linkedin.com/in/bogdan-chadkin-ab1684b6">
-    TrySound
-  </a>
-  © 2025
+  <button class="text-button" commandfor="engramma-dialog" command="show-modal">
+    Edit design tokens
+  </button>
+
+  <p>
+    Built by
+    <a
+      target="_blank"
+      href="https://www.linkedin.com/in/bogdan-chadkin-ab1684b6"
+    >
+      TrySound
+    </a>
+    © 2025
+  </p>
 </footer>
+
+<script
+  type="module"
+  src="https://unpkg.com/engramma@latest/dist/engramma.js"
+></script>
+
+<style>
+  #engramma-dialog:modal {
+    top: 8px;
+    right: 8px;
+    bottom: auto;
+    left: auto;
+    width: 30dvw;
+    height: calc(100dvh - 16px);
+    padding: 0;
+    border: 0;
+    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+  }
+  #engramma-dialog::backdrop {
+    display: none;
+  }
+</style>
+<dialog id="engramma-dialog" closedby="any">
+  <engramma-app></engramma-app>
+</dialog>
 
 <!-- keep in the footer to avoid interfering with body grid -->
 <svg width="0" height="0">

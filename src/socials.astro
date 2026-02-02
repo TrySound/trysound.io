@@ -1,0 +1,57 @@
+<nav data-socials>
+  <a target="_blank" href="https://github.com/TrySound" aria-label="GitHub">
+    <svg>
+      <use href="/icon.svg#github"></use>
+    </svg>
+  </a>
+  <a
+    target="_blank"
+    href="https://bsky.app/profile/trysound.io"
+    aria-label="Bluesky"
+  >
+    <svg>
+      <use href="/icon.svg#bluesky"></use>
+    </svg>
+  </a>
+  <a target="_blank" href="https://t.me/trysound" aria-label="Telegram channel">
+    <svg>
+      <use href="/icon.svg#telegram"></use>
+    </svg>
+  </a>
+</nav>
+
+<script>
+  import { PowerGlitch } from "powerglitch";
+
+  PowerGlitch.glitch("[data-socials] svg", {
+    playMode: "hover",
+    shake: {
+      amplitudeX: -1.2,
+    },
+  });
+</script>
+
+<style>
+  nav {
+    margin-left: auto;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  a {
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+</style>

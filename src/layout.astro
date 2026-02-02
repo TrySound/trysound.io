@@ -1,0 +1,50 @@
+---
+import "./styles.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta property="og:image" content="/trysound.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{Astro.props.title || "Bogdan Chadkin"}</title>
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script
+      is:inline
+      async
+      src="https://plausible.io/js/pa-iFkqCwW3imf-pi6hWud1Q.js"></script>
+    <script is:inline>
+      ((window.plausible =
+        window.plausible ||
+        function () {
+          (plausible.q = plausible.q || []).push(arguments);
+        }),
+        (plausible.init =
+          plausible.init ||
+          function (i) {
+            plausible.o = i || {};
+          }));
+      plausible.init();
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      import { PowerGlitch } from "powerglitch";
+
+      PowerGlitch.glitch(".page-name", {
+        playMode: "hover",
+      });
+
+      PowerGlitch.glitch(".page-socials a svg", {
+        playMode: "hover",
+        shake: {
+          amplitudeX: -1.2,
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -14,6 +14,8 @@ And I was very excited by how expressive it is compared to previous iterations a
 
 It felt like a great opportunity to get better at design systems.
 
+## Prototyping with Modern Tools
+
 Using OpenCode for rapid prototyping and Svelte as a lightweight framework (already worked with it), I made a simple two-pane UI: a tokens tree on the left and generated CSS variables on the right. AI helps a ton with moving forward from "blank pages".
 
 ![Early Engramma design tokens editor prototype UI](../assets/building-design-tokens-app/prototype.png)
@@ -35,6 +37,8 @@ For UI components, I decided to go with HTML. Yeah, it got a lot of good stuff r
 
 These are very easy to polyfill, except for anchor positioning, but I worked around that with a custom [floating-ui](https://github.com/floating-ui/floating-ui) setup.
 
+## Visualizing design tokens
+
 Now we have a token editor and a CSS/JSON preview. That's useful for coding, but not for visual exploration.
 
 What would be more helpful is an automatically generated style guide based on design tokens. All these values could be rendered as widgets and placed on a single page for designers to browse.
@@ -44,6 +48,8 @@ There's still room for improvement, though I already like the progress. Especial
 ![Generated style guide preview based on design tokens](../assets/building-design-tokens-app/styleguide.png)
 
 What about AI? Can design tokens improve the results of generated websites and applications? Experience shows that the more specific your question is, the better the results you get. Design tokens could help a lot with this, and it may be interesting to explore later.
+
+## Design tokens architecture
 
 While researching I read a ton about design systems, especially recommend [Brad Frost's book and articles](https://bradfrost.com). That's where I learned how essential token aliasing is. One great concept is a 3-tier token architecture which defines arbitrary, semantic, and component values, where each layer maps to the next.
 
@@ -55,16 +61,20 @@ This component-specific tier can be leveraged even further by rendering a combin
 
 The design tokens specification offers a few options for this. One is the [token reference](https://www.designtokens.org/tr/2025.10/format/#references-and-json-pointer-integration) syntax (I use this one in the app), another uses [JSON Schema Pointer](https://www.designtokens.org/tr/2025.10/format/#json-pointer-support) (which I find trickier to represent in a UI).
 
+## Introducing...
+
 By the way, I called this tool **Engramma**. I wanted an original name, so I borrowed it from one of my favorite games and used the Italian variant. You can check it out at [engramma.dev](https://engramma.dev).
 
 From the start, the project has been completely open source, and I'm posting progress everywhere Reddit can't block me (yep, they're super unfriendly to new users). You can check it out on [GitHub](https://github.com/TrySound/engramma).
 
-What's next? I'll keep improving the tool and start using it for new projects. Here are the closest ideas to implement:
+## What's Next
+
+Gonna keep improving the tool and start using it for new projects. Here are the closest ideas to implement:
 
 - Themes and light/dark modes support based on "Resolver" specification that extends the DTCG format with "Sets" and "Modifiers" to partially override values while reusing others.
 - Synchronize tokens with project code
 - Explore integrations with external graphics editors and website builders
 
-If you work with design systems, I'd love your feedback on Engramma—try it at [engramma.dev](https://engramma.dev), import your JSON with tokens, and tell me what's missing.
+If you work with design systems, I'd love your feedback on Engramma – try it at [engramma.dev](https://engramma.dev), import your JSON with tokens, and tell me what's missing.
 
 ![Engramma design tokens app interface with tokens and preview](../assets/building-design-tokens-app/engramma.png)

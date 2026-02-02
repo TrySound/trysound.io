@@ -7,11 +7,19 @@ import "./styles.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta property="og:image" content="/trysound.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
     <link rel="alternate" type="application/rss+xml" title="Bogdan Chadkin" href={`${Astro.site}rss.xml`} />
     <meta name="generator" content={Astro.generator} />
     <title>{Astro.props.title || "Bogdan Chadkin"}</title>
+    <meta name="description" content={Astro.props.description || "Bogdan Chadkin - Software Engineer"} />
+    <meta property="og:title" content={Astro.props.title || "Bogdan Chadkin"} />
+    <meta property="og:description" content={Astro.props.description || "Software Engineer building fast, accessible user interfaces and scalable front-end architecture."} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${Astro.site}${Astro.url.pathname}`} />
+    <meta property="og:image" content={`${Astro.site}trysound.jpg`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={Astro.props.title || "Bogdan Chadkin"} />
+    <meta name="twitter:description" content={Astro.props.description || "Software Engineer building fast, accessible user interfaces and scalable front-end architecture."} />
+    <meta name="twitter:image" content={`${Astro.site}trysound.jpg`} />
     <!-- Privacy-friendly analytics by Plausible -->
     <script
       is:inline

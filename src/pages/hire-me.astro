@@ -5,7 +5,9 @@ import Socials from "../socials.astro";
 
 <Layout title="Hire Bogdan Chadkin - Software Engineer">
   <header class="header">
-    <h1 class="name" style="display: table; view-transition-name: name;">Bogdan Chadkin</h1>
+    <h1 class="name" style="display: table; view-transition-name: name;">
+      Bogdan Chadkin
+    </h1>
     <div class="contact">
       <a href="mailto:me@trysound.io" class="contact-link">me@trysound.io</a>
       <span class="divider">|</span>
@@ -166,7 +168,9 @@ import Socials from "../socials.astro";
 
       <article class="experience-item">
         <div class="experience-header">
-          <h3 class="company"><a href="https://realadvisor.ch/en">RealAdvisor</a></h3>
+          <h3 class="company">
+            <a href="https://realadvisor.ch/en">RealAdvisor</a>
+          </h3>
           <span class="role">Software Engineer</span>
           <span class="date">2017-2022</span>
         </div>
@@ -263,7 +267,8 @@ import Socials from "../socials.astro";
   }
 
   .contact {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
     align-items: center;
     font-size: 0.95rem;
@@ -274,7 +279,8 @@ import Socials from "../socials.astro";
   }
 
   .divider {
-    display: none;
+    color: var(--text-muted);
+    font-weight: 300;
   }
 
   .timezone {
@@ -387,7 +393,11 @@ import Socials from "../socials.astro";
   }
 
   @media print {
-    .divier {
+    .contact {
+      display: grid;
+    }
+
+    .divider {
       display: none;
     }
 

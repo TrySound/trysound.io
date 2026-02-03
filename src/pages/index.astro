@@ -9,7 +9,10 @@ const sortedPosts = posts.sort(
 );
 ---
 
-<Layout title="Bogdan Chadkin - Software Engineer" description="Building fast, accessible user interfaces and scalable front-end architecture. 10+ years of experience with a passion for performance, web standards, and developer experience.">
+<Layout
+  title="Bogdan Chadkin - Software Engineer"
+  description="Building fast, accessible user interfaces and scalable front-end architecture. 10+ years of experience with a passion for performance, web standards, and developer experience."
+>
   <main class="main-container">
     <div class="hero">
       <h1 class="title">Bogdan Chadkin</h1>
@@ -36,16 +39,27 @@ const sortedPosts = posts.sort(
                 <a href={`/${post.slug}/`} class="card-link">
                   <time
                     class="card-subtitle"
+                    style={`view-transition-name: ${post.slug}-date;`}
                     datetime={post.data.date.toISOString()}
                   >
                     {post.data.date.toLocaleDateString("en-US", {
                       year: "numeric",
-                      month: "short",
+                      month: "long",
                       day: "numeric",
                     })}
                   </time>
-                  <h3 class="card-title">{post.data.title}</h3>
-                  <p class="card-description">{post.data.description}</p>
+                  <h3
+                    class="card-title"
+                    style={`view-transition-name: ${post.slug}-title;`}
+                  >
+                    {post.data.title}
+                  </h3>
+                  <p
+                    class="card-description"
+                    style={`view-transition-name: ${post.slug}-description;`}
+                  >
+                    {post.data.description}
+                  </p>
                 </a>
               </article>
             ))}
@@ -77,6 +91,9 @@ const sortedPosts = posts.sort(
   }
 
   .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     padding: 4rem 0;
   }
@@ -87,6 +104,8 @@ const sortedPosts = posts.sort(
     margin-bottom: 0.5rem;
     color: var(--text-primary);
     letter-spacing: -0.02em;
+    display: table;
+    view-transition-name: name;
   }
 
   .subtitle {

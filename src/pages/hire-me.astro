@@ -263,8 +263,7 @@ import Socials from "../socials.astro";
   }
 
   .contact {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 0.5rem;
     align-items: center;
     font-size: 0.95rem;
@@ -275,8 +274,7 @@ import Socials from "../socials.astro";
   }
 
   .divider {
-    color: var(--text-muted);
-    font-weight: 300;
+    display: none;
   }
 
   .timezone {
@@ -386,5 +384,126 @@ import Socials from "../socials.astro";
   strong {
     color: var(--text-primary);
     font-weight: 600;
+  }
+
+  @media print {
+    .divier {
+      display: none;
+    }
+
+    .header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #cccccc;
+    }
+
+    .name {
+      font-size: 2rem;
+      color: #000000;
+    }
+
+    .section {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      color: #000000;
+      border-bottom: 2px solid #000000;
+      margin-bottom: 1rem;
+    }
+
+    .summary {
+      color: #333333;
+    }
+
+    .opensource-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .card {
+      background: transparent;
+      border: none;
+      padding: 0.5rem 0;
+      break-inside: avoid;
+    }
+
+    .card:has(.card-link) {
+      padding: 0;
+    }
+
+    .card-link {
+      padding: 0.5rem 0;
+      gap: 0.25rem;
+    }
+
+    .card-title {
+      color: #000000;
+      font-size: 1.1rem;
+    }
+
+    .card-subtitle {
+      color: #666666;
+    }
+
+    .card-description {
+      color: #333333;
+    }
+
+    .expertise-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .experience-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #cccccc;
+      break-inside: avoid;
+    }
+
+    .company {
+      color: #000000;
+    }
+
+    .role {
+      color: #333333;
+    }
+
+    .date {
+      color: #666666;
+    }
+
+    .company-tagline {
+      color: #666666;
+    }
+
+    .experience-list {
+      color: #333333;
+    }
+
+    strong {
+      color: #000000;
+    }
+
+    .cta-section {
+      background: transparent;
+      border: 1px solid #cccccc;
+      padding: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .cta-title {
+      color: #000000;
+    }
+
+    .cta-text {
+      color: #333333;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer {
+      display: none;
+    }
   }
 </style>

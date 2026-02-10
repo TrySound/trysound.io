@@ -72,6 +72,34 @@ li {
   }
 }
 
+.cta-section {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.cta-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.cta-text {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: pretty;
+}
+
 .section-title {
   display: table;
   font-size: 1.5rem;
@@ -179,6 +207,22 @@ li {
 
   .cta-button {
     display: none;
+  }
+
+  .cta-section {
+    background: transparent;
+    border: 1px solid #cccccc;
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .cta-title {
+    color: #000000;
+  }
+
+  .cta-text {
+    color: #333333;
+    margin-bottom: 0.75rem;
   }
 
   .card {

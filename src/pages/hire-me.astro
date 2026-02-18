@@ -406,6 +406,10 @@ import Socials from "../socials.astro";
   }
 
   @media print {
+    .section {
+      break-inside: avoid;
+    }
+
     .contact {
       display: grid;
     }

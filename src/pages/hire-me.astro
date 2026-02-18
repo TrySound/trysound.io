@@ -32,11 +32,22 @@ import Socials from "../socials.astro";
   <main>
     <section class="section">
       <p class="summary">
-        Software engineer with 10+ years building fast, accessible user
-        interfaces and scalable front-end architecture. Deep expertise in build
-        tools, performance optimization, and developer experience. Core
-        contributor to major JS ecosystem tools used by millions of developers.
+        Senior frontend engineer specializing in build tools, performance, and
+        developer experience. 10+ years building fast, accessible interfaces and
+        scalable UI architecture. Core contributor to major JS ecosystem tools
+        with tens of millions of monthly downloads.
       </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">What I'm Best For</h2>
+      <ul class="bestfor-list">
+        <li>Build tooling and compiler pipelines for modern web apps</li>
+        <li>Performance optimization across build and runtime paths</li>
+        <li>Design-to-code workflows and visual editor UX</li>
+        <li>Design systems, tokens, and scalable component architecture</li>
+        <li>Developer experience and engineering velocity improvements</li>
+      </ul>
     </section>
 
     <section class="section">
@@ -54,6 +65,7 @@ import Socials from "../socials.astro";
               Web application for generating style guides and managing design
               tokens.
             </p>
+            <p class="card-proof">Author, active since 2025</p>
           </a>
         </article>
         <article class="card">
@@ -68,6 +80,7 @@ import Socials from "../socials.astro";
               Popular SVG optimizer. Rebuilt plugin system, reduced package size
               by 40%, improved stability.
             </p>
+            <p class="card-proof">24M downloads, 22k stars</p>
           </a>
         </article>
         <article class="card">
@@ -83,6 +96,7 @@ import Socials from "../socials.astro";
               (60% faster rebuilds), improved tree-shaking, contributed into
               plugin ecosystem.
             </p>
+            <p class="card-proof">67M downloads, 26k stars</p>
           </a>
         </article>
         <article class="card">
@@ -98,6 +112,7 @@ import Socials from "../socials.astro";
               projects. Core contributor, co-authored cssnano minifier, created
               postcss-value-parser.
             </p>
+            <p class="card-proof">138M downloads, 29k stars</p>
           </a>
         </article>
       </div>
@@ -114,17 +129,17 @@ import Socials from "../socials.astro";
           </p>
         </article>
         <article class="card">
-          <h3 class="card-title">Frontend Architecture</h3>
+          <h3 class="card-title">Frontend</h3>
           <p class="card-description">
-            TypeScript, React, Svelte, design systems, component libraries,
-            design-to-code workflows
+            HTML, CSS, TypeScript, React, Svelte, TailwindCSS, design systems,
+            component libraries, design-to-code workflows
           </p>
         </article>
         <article class="card">
           <h3 class="card-title">Backend & Infrastructure</h3>
           <p class="card-description">
-            Node.js, Cloudflare Workers, PostgreSQL, GCP, CI/CD, Terraform,
-            Docker
+            Node.js, Cloudflare Workers, PostgreSQL, GCP, Terraform, Docker,
+            GitHub Actions, Hasura
           </p>
         </article>
       </div>
@@ -156,6 +171,10 @@ import Socials from "../socials.astro";
             content from any backend without vendor lock-in
           </li>
           <li>
+            Enabled design-system workflows with tokens and CSS variables,
+            including an Open Props-based starter system
+          </li>
+          <li>
             Shipped <strong>semantic HTML validator</strong> enforcing accessibility
             best practices
           </li>
@@ -185,6 +204,10 @@ import Socials from "../socials.astro";
           <li>
             Delivered <strong>custom auth system</strong> for enterprise partners,
             enabling B2B expansion
+          </li>
+          <li>
+            Led a 3-month TypeScript migration of a large codebase, reducing
+            manual testing and improving deployment speed by 30%
           </li>
           <li>
             Optimized data-fetching: <strong>cut page load times by 50%</strong> through
@@ -239,7 +262,8 @@ import Socials from "../socials.astro";
       <h2 class="cta-title">Let's Build Something Great</h2>
       <p class="cta-text">
         Available for freelance, consulting, and full-time opportunities. I help
-        teams build fast, accessible user interfaces and scalable frontend architecture.
+        teams build fast, accessible user interfaces and scalable frontend
+        architecture.
       </p>
       <a href="mailto:me@trysound.io" class="cta-button">Get in Touch</a>
     </section>
@@ -295,6 +319,16 @@ import Socials from "../socials.astro";
     font-size: 1.1rem;
     line-height: 1.7;
     color: var(--text-secondary);
+  }
+
+  .bestfor-list {
+    color: var(--text-secondary);
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .bestfor-list li {
+    margin-bottom: 0.5rem;
   }
 
   .opensource-grid {
@@ -360,6 +394,12 @@ import Socials from "../socials.astro";
     line-height: 1.6;
   }
 
+  .card-proof {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+  }
+
   strong {
     color: var(--text-primary);
     font-weight: 600;
@@ -399,6 +439,10 @@ import Socials from "../socials.astro";
       color: #333333;
     }
 
+    .bestfor-list {
+      color: #333333;
+    }
+
     .opensource-grid {
       grid-template-columns: 1fr 1fr;
       gap: 0.75rem;
@@ -431,6 +475,10 @@ import Socials from "../socials.astro";
 
     .card-description {
       color: #333333;
+    }
+
+    .card-proof {
+      color: #666666;
     }
 
     .expertise-grid {

@@ -78,7 +78,14 @@ const sortedPosts = posts.sort(
   import { PowerGlitch } from "powerglitch";
 
   PowerGlitch.glitch("[data-index-hero-subtitle]", {
-    playMode: "hover",
+    playMode: "always",
+    timing: {
+      duration: 12000,
+    },
+    glitchTimeSpan: {
+      start: 0.13,
+      end: 0.15,
+    },
   });
 </script>
 

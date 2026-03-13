@@ -3,10 +3,10 @@ import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 
 export async function GET(context: APIContext) {
-  const blog = await getCollection("blog");
-  const sortedPosts = blog.sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-  );
+  const posts = await getCollection("blog");
+  const sortedPosts = posts
+    .filter((post) => !post.data.isDraft)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   return rss({
     title: "Bogdan Chadkin aka TrySound",
     description:

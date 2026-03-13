@@ -4,9 +4,9 @@ import Layout from "../layout.astro";
 import Socials from "../socials.astro";
 
 const posts = await getCollection("blog");
-const sortedPosts = posts.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const sortedPosts = posts
+  .filter((post) => !post.data.isDraft || import.meta.env.DEV)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <Layout

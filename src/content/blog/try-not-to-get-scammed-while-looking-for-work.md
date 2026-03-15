@@ -9,17 +9,13 @@ Job hunting is exhausting. Cold applications come back with rejections. Getting 
 
 Frustration wears down your guard. And when someone messages you praising your skills, you want to believe it's legit.
 
-> I think you have an interesting profile and would be a great fit for the engineering team. We're hiring talented developers like you. Are you open to remote work?
+>  I think you have an interesting profile and would be a great fit for the engineering team. We're hiring talented developers like you. Are you open to remote work?
 
-Joan, supposedly the CTO of a fintech company, reached out to me. A European fintech startup sounded promising. I even had mutual connections who followed the company and were linked to Joan on LinkedIn. Everything checked out.
-
-He asked to move our conversation to Telegram. I agreed. We scheduled a call.
+Joan, supposedly the CTO of a fintech company, reached out to me. A European fintech startup sounded promising. I even had mutual connections who followed the company and were linked to Joan on LinkedIn. Everything checked out. He asked to move our conversation to Telegram. I agreed. We scheduled a call.
 
 He sent a Microsoft Teams link. When I opened it on my phone, it demanded a desktop. My laptop was in service but Joan insisted the app only worked on desktop. I suggested Google Meet instead or something else mobile-friendly. He pushed to reschedule.
 
-I got my laptop back, Joan sent another Microsoft Teams link. This time, audio failed and the app prompted me to update some SDK. I tried the desktop app with the same room id, but it said "meeting not found." I sent him a Google Meet link instead though neither of us could hear the other. Weird, but I assumed something had been damaged while I was in service or software got outdated.
-
-Alright, being user of Microsoft software first half of my life I was not surprised. So we agreed to try Zoom next time.
+I got my laptop back, Joan sent another Microsoft Teams link. This time, audio failed and the browser app prompted me to update some SDK. I tried the desktop app with the same room id, but it said "meeting not found." Alright, being user of Microsoft software first half of my life I was not surprised. I sent him a Google Meet link instead though neither of us could hear the other. Weird, but I assumed something had been damaged while I was in service or software got outdated. So we agreed to try Zoom next time.
 
 Before the call, I tested both Google Meet in browser and Zoom desktop to be sure.
 

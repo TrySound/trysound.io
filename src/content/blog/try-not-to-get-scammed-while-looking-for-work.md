@@ -19,7 +19,10 @@ skills, you want to believe it's genuine.
 Joan, supposedly the CTO of a fintech company, reached out to me. A European
 fintech startup sounded promising. I even had mutual connections who followed
 the company and were linked to Joan on LinkedIn. Everything checked out. He
-asked to move our conversation to Telegram. I agreed. We scheduled a call.
+asked to move our conversation to Telegram. I agreed. We scheduled a call. But
+just before it was supposed to start, Joan messaged me that he had a family
+emergency and needed to push our meeting by two hours. The personal detail made
+me relate to him.
 
 He sent a Microsoft Teams link. When I opened it on my phone, it demanded a
 desktop. My laptop was in service but Joan insisted the app only worked on

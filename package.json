@@ -17,6 +17,7 @@
     "preview": "astro preview"
   },
   "prettier": {
+    "proseWrap": "always",
     "plugins": [
       "prettier-plugin-astro"
     ],

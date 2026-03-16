@@ -7,15 +7,15 @@ isDraft: true
 
 Job hunting is exhausting. Cold applications come back with rejections. Getting on recruiters radar feels nearly impossible.
 
-Frustration wears down your guard. And when someone messages you praising your skills, you want to believe it's legit.
+Frustration wears down your guard. And when someone messages you praising your skills, you want to believe it's genuine.
 
->  I think you have an interesting profile and would be a great fit for the engineering team. We're hiring talented developers like you. Are you open to remote work?
+> I think you have an interesting profile and would be a great fit for the engineering team. We're hiring talented developers like you. Are you open to remote work?
 
 Joan, supposedly the CTO of a fintech company, reached out to me. A European fintech startup sounded promising. I even had mutual connections who followed the company and were linked to Joan on LinkedIn. Everything checked out. He asked to move our conversation to Telegram. I agreed. We scheduled a call.
 
 He sent a Microsoft Teams link. When I opened it on my phone, it demanded a desktop. My laptop was in service but Joan insisted the app only worked on desktop. I suggested Google Meet instead or something else mobile-friendly. He pushed to reschedule.
 
-I got my laptop back, Joan sent another Microsoft Teams link. This time, audio failed and the browser app prompted me to update some SDK. I tried the desktop app with the same room id, but it said "meeting not found." Alright, being user of Microsoft software first half of my life I was not surprised. I sent him a Google Meet link instead though neither of us could hear the other. Weird, but I assumed something had been damaged while I was in service or software got outdated. So we agreed to try Zoom next time.
+Once I got my laptop back, Joan sent another Microsoft Teams link. This time, audio failed and the browser app prompted me to update some SDK. I tried the desktop app with the same room id, but it said "meeting not found." Alright, as a user of Microsoft software first half of my life I was not surprised. I sent him a Google Meet link instead though neither of us could hear the other. Weird, but I assumed something had been damaged while I was in service or software got outdated. So we agreed to try Zoom next time.
 
 Before the call, I tested both Google Meet in browser and Zoom desktop to be sure.
 
@@ -43,11 +43,9 @@ I searched through my history. The Teams link didn't look real too:
 
 > https://teams.microsomeet.com/meet/9973477680?pwd=rVfAJBNjBxBlMwXKrU0SI0YUzmjsgz.1
 
-Both now redirect to the real services home pages.
+Both now redirect to the real services home pages. But when I tried to join those calls, they likely contained scripts installing malicious software. specifically through commands like curl -s url | zsh, which downloads and immediately executes code without verification.
 
-I searched online and found a Google Cloud threat intelligence report describing similar cases:
-
-https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering
+I searched online and found [a Google Cloud threat intelligence report](https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering) describing similar cases:
 
 > The victim was contacted via Telegram through the account of an executive of a cryptocurrency company that had been compromised. The account engaged the victim and, after building a rapport, sent a Calendly link to schedule a 30-minute meeting. The meeting link itself directed to a spoofed Zoom meeting that was hosted on the threat actor's infrastructure, `zoom[.]uswe05[.]us`. 
 

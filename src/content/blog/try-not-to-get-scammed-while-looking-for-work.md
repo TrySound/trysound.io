@@ -95,7 +95,7 @@ When a CTO personally reaches out, you want it to be real and that makes you
 vulnerable. Scammers exploit this deliberately targeting the unemployed
 precisely because frustration clouds judgment.
 
-### What I missed
+## What I missed
 
 Looking back, the warnings were there. Telegram lets users disguise malicious
 links behind innocent text, then delete messages to erase evidence. "SDK

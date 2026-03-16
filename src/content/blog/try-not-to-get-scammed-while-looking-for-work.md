@@ -3,8 +3,7 @@ title: "Try not to get scammed while looking for work"
 description:
   "Couple weeks ago a CTO contacted me about a role at their company. After
   three failed calls, I figured they are trying to access my machine."
-date: 2026-03-13
-isDraft: true
+date: 2026-03-16
 ---
 
 Job hunting is exhausting. Cold applications come back with rejections. Getting

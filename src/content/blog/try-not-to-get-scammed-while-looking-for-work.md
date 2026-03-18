@@ -83,7 +83,7 @@ describing similar cases:
 > cryptocurrency company that had been compromised. The account engaged the
 > victim and, after building a rapport, sent a Calendly link to schedule a
 > 30-minute meeting. The meeting link itself directed to a spoofed Zoom meeting
-> that was hosted on the threat actor's infrastructure, `zoom[.]uswe05[.]us`. 
+> that was hosted on the threat actor's infrastructure, `zoom[.]uswe05[.]us`.
 
 Sounds familiar, right? I found the real company's Telegram support, and
 reported the compromised LinkedIn account. The actual Joan promised to change

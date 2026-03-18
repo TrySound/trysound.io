@@ -190,6 +190,11 @@ const { Content } = await post.render();
     height: auto;
   }
 
+  .article-content :global(a) {
+    overflow-wrap: break-word;
+  }
+
+
   @media (min-width: 640px) {
     .article-title {
       font-size: 2.5rem;

@@ -13,8 +13,9 @@
   "scripts": {
     "check": "astro check",
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "build": "astro build && sequoia inject",
+    "preview": "astro preview",
+    "publish-articles": "sequoia publish"
   },
   "prettier": {
     "proseWrap": "always",
@@ -37,6 +38,7 @@
     "powerglitch": "^2.5.0",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
+    "sequoia-cli": "^0.5.6",
     "sharp": "^0.34.5",
     "typescript": "^5.9.3",
     "vite": "^6.4.1"

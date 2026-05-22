@@ -4,6 +4,7 @@ description:
   "Couple weeks ago a CTO contacted me about a role at their company. After
   three failed calls, I figured they are trying to access my machine."
 date: 2026-03-16
+atUri: "at://did:plc:ookzzzg4hc3mxf44jkocwiep/site.standard.document/3mmgntvpbtq25"
 ---
 
 Job hunting is exhausting. Cold applications come back with rejections. Getting

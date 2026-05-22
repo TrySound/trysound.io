@@ -4,6 +4,7 @@ description:
   "A little piece about dealing with security providers and clearing my side
   project's reputation after a false positive flagging."
 date: 2026-02-12
+atUri: "at://did:plc:ookzzzg4hc3mxf44jkocwiep/site.standard.document/3mmgntwb5zw27"
 ---
 
 Friday evening is a great time for tinkering with a side project after a long

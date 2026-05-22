@@ -4,6 +4,7 @@ description:
   "A story of how I started building Engramma, a design tokens app, to learn
   modern design systems and token-based workflows."
 date: 2025-12-09
+atUri: "at://did:plc:ookzzzg4hc3mxf44jkocwiep/site.standard.document/3mmgntwpeyr2x"
 ---
 
 Working on a large project requires a systematic design approach to keep the

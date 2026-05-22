@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 export async function GET(context: APIContext) {
   const posts = await getCollection("blog");
   const sortedPosts = posts
-    .filter((post) => !post.data.isDraft)
+    .filter((post) => !post.data.draft)
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   return rss({
     title: "Bogdan Chadkin aka TrySound",

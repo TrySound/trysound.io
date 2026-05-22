@@ -3,7 +3,7 @@
   "siteUrl": "https://trysound.io",
   "contentDir": "./src/content/blog",
   "outputDir": "./dist",
-  "pathPrefix": "/",
+  "pathPrefix": "",
   "publicationUri": "at://did:plc:ookzzzg4hc3mxf44jkocwiep/site.standard.publication/3mmgno6gxmw2z",
   "frontmatter": {
     "publishDate": "date"

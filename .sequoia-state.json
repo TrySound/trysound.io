@@ -1,0 +1,22 @@
+{
+  "posts": {
+    "src/content/blog/try-not-to-get-scammed-while-looking-for-work.md": {
+      "contentHash": "e8d64eeeec7e0f139cee647347f7de3140a16e9991e2bf203fcde36ac1201307",
+      "atUri": "at://did:plc:ookzzzg4hc3mxf44jkocwiep/site.standard.document/3mmgntvpbtq25",
+      "lastPublished": "2026-05-22T09:57:48.203Z",
+      "slug": "try-not-to-get-scammed-while-looking-for-work"
+    },
+    "src/content/blog/how-my-side-project-got-banned-from-the-internet.md": {
+      "contentHash": "b5db9bba246caa03a8b02c4e3cabc2c81a2d3946bd7849a8ee9561c0a43c443b",
+      "atUri": "at://did:plc:ookzzzg4hc3mxf44jkocwiep/site.standard.document/3mmgntwb5zw27",
+      "lastPublished": "2026-05-22T09:57:49.457Z",
+      "slug": "how-my-side-project-got-banned-from-the-internet"
+    },
+    "src/content/blog/building-design-tokens-app.md": {
+      "contentHash": "2630219278521f7bd16a3e51bf9441c0fe15d3020ed8712cf9455402958ddca7",
+      "atUri": "at://did:plc:ookzzzg4hc3mxf44jkocwiep/site.standard.document/3mmgntwpeyr2x",
+      "lastPublished": "2026-05-22T09:57:50.417Z",
+      "slug": "building-design-tokens-app"
+    }
+  }
+}

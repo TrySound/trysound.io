@@ -1,8 +1,11 @@
+@import "./fonts.css";
+
 @view-transition {
   navigation: auto;
 }
 
 :root {
+  --font-heading: "Rajdhani", sans-serif;
   --bg-primary: #0a0a0a;
   --bg-secondary: #141414;
   --bg-tertiary: #1a1a1a;
@@ -36,6 +39,21 @@ body {
   min-height: 100%;
   margin: 0 auto;
   padding: 3rem 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+body.full-width {
+  max-width: none;
+  padding: 2rem clamp(1rem, 4vw, 5rem);
 }
 
 a {
@@ -84,7 +102,6 @@ li {
 
 .cta-title {
   font-size: 1.5rem;
-  font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
 }
@@ -101,7 +118,6 @@ li {
 .section-title {
   display: table;
   font-size: 1.5rem;
-  font-weight: 600;
   margin-bottom: 1.25rem;
   color: var(--text-primary);
   padding-bottom: 0.5rem;
@@ -135,7 +151,6 @@ li {
 
 .card-title {
   font-size: 1.25rem;
-  font-weight: 600;
   color: var(--text-primary);
   line-height: 1.3;
 }

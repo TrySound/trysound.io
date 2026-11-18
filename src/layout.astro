@@ -22,8 +22,10 @@ import "./styles.css";
     <meta property="og:title" content={Astro.props.title || "Bogdan Chadkin"} />
     <meta
       property="og:description"
-      content={Astro.props.description ||
-        "Software Engineer building fast, accessible user interfaces and scalable front-end architecture."}
+      content={
+        Astro.props.description ||
+        "Software Engineer building fast, accessible user interfaces and scalable front-end architecture."
+      }
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={`${Astro.site}${Astro.url.pathname}`} />
@@ -35,15 +37,18 @@ import "./styles.css";
     />
     <meta
       name="twitter:description"
-      content={Astro.props.description ||
-        "Software Engineer building fast, accessible user interfaces and scalable front-end architecture."}
+      content={
+        Astro.props.description ||
+        "Software Engineer building fast, accessible user interfaces and scalable front-end architecture."
+      }
     />
     <meta name="twitter:image" content={`${Astro.site}trysound.jpg`} />
     <!-- Privacy-friendly analytics by Plausible -->
     <script
       is:inline
       async
-      src="https://plausible.io/js/pa-iFkqCwW3imf-pi6hWud1Q.js"></script>
+      src="https://plausible.io/js/pa-iFkqCwW3imf-pi6hWud1Q.js"
+    ></script>
     <script is:inline>
       ((window.plausible =
         window.plausible ||
@@ -58,7 +63,7 @@ import "./styles.css";
       plausible.init();
     </script>
   </head>
-  <body>
+  <body class:list={{ "full-width": Astro.props.fullWidth }}>
     <slot />
   </body>
 </html>

@@ -7,69 +7,120 @@ const posts = await getCollection("blog");
 const sortedPosts = posts
   .filter((post) => !post.data.draft || import.meta.env.DEV)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const adventures = [
+  {
+    name: "Engramma",
+    role: "Author · 2025–present",
+    href: "https://github.com/TrySound/engramma",
+    description:
+      "A home for design tokens. Generate style guides and manage the foundations of a design system.",
+  },
+  {
+    name: "SVGO",
+    role: "Maintainer · 2021–2023",
+    href: "https://github.com/svg/svgo",
+    description:
+      "Making SVGs smaller. Rebuilt the plugin system, reduced package size, and improved stability.",
+  },
+  {
+    name: "Rollup",
+    role: "Contributor · 2015–2018",
+    href: "https://github.com/rollup/rollup",
+    description:
+      "An ES module bundler. Worked on persistent caching, tree-shaking, and the plugin ecosystem.",
+  },
+  {
+    name: "PostCSS ecosystem",
+    role: "Contributor · 2015–2016",
+    href: "https://github.com/postcss/postcss",
+    description:
+      "Transforming CSS with JavaScript. Co-authored cssnano and created postcss-value-parser.",
+  },
+];
 ---
 
 <Layout
-  title="Bogdan Chadkin - Software Engineer"
-  description="Building fast, accessible user interfaces and scalable front-end architecture. 10+ years of experience with a passion for performance, web standards, and developer experience."
+  fullWidth
+  title="TrySound — Bogdan Chadkin"
+  description="Also known as Bogdan Chadkin. Here I write about open source and web."
 >
-  <main class="main-container">
-    <div class="hero">
-      <h1 class="title">Bogdan Chadkin</h1>
-      <p class="subtitle" data-index-hero-subtitle>
-        aka TrySound, Software Engineer
+  <main>
+    <header class="hero">
+      <h1 class="title" aria-label="TrySound">
+        <span data-index-hero-title aria-hidden="true">
+          TrySound
+        </span>
+      </h1>
+      <p class="intro">
+        also known as Bogdan Chadkin
+        <br />
+        Here I write about open source and web.
       </p>
-      <p class="description">
-        Building fast, accessible user interfaces and scalable front-end
-        architecture. 10+ years of experience with a passion for performance,
-        web standards, and developer experience.
-      </p>
-      <div class="cta">
-        <a href="/hire-me" class="cta-button">Hire Me</a>
-      </div>
-    </div>
+    </header>
 
-    {
-      sortedPosts.length > 0 && (
-        <section class="blog-section">
-          <h2 class="section-title">Latest Writing</h2>
-          <div class="blog-list">
-            {sortedPosts.map((post) => (
-              <article class="card">
-                <a href={`/${post.id}/`} class="card-link">
-                  <time
-                    class="card-subtitle"
-                    style={`view-transition-name: ${post.id}-date;`}
-                    datetime={post.data.date.toISOString()}
-                  >
-                    {post.data.date.toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
-                  <h3
-                    class="card-title"
-                    style={`view-transition-name: ${post.id}-title;`}
-                  >
-                    {post.data.title}
-                  </h3>
-                  <p
-                    class="card-description"
-                    style={`view-transition-name: ${post.id}-description;`}
-                  >
-                    {post.data.description}
-                  </p>
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
-      )
-    }
+    <div
+      class="columns"
+      style={`--entry-count: ${Math.max(sortedPosts.length, adventures.length)};`}
+    >
+      <section class="posts" aria-labelledby="posts-title">
+        <h2 id="posts-title" class="column-title">
+          posts
+        </h2>
+        <div class="entries">
+          {sortedPosts.map((post) => (
+            <article>
+              <a href={`/${post.id}/`} class="entry">
+                <time
+                  class="entry-meta"
+                  style={`view-transition-name: ${post.id}-date;`}
+                  datetime={post.data.date.toISOString()}
+                >
+                  {post.data.date.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+                <h3
+                  class="entry-title"
+                  style={`view-transition-name: ${post.id}-title;`}
+                >
+                  {post.data.title}
+                </h3>
+                <p
+                  class="entry-description"
+                  style={`view-transition-name: ${post.id}-description;`}
+                >
+                  {post.data.description}
+                </p>
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="adventures" aria-labelledby="adventures-title">
+        <h2 id="adventures-title" class="column-title">
+          open source adventures
+        </h2>
+        <div class="entries">
+          {adventures.map((adventure) => (
+            <article>
+              <a href={adventure.href} class="entry">
+                <span class="entry-meta">{adventure.role}</span>
+                <h3 class="entry-title">{adventure.name}</h3>
+                <p class="entry-description">{adventure.description}</p>
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer class="footer">
+  <footer class="home-footer">
+    <a href="/rss.xml">RSS feed</a>
     <Socials />
   </footer>
 </Layout>
@@ -77,99 +128,185 @@ const sortedPosts = posts
 <script>
   import { PowerGlitch } from "powerglitch";
 
-  PowerGlitch.glitch("[data-index-hero-subtitle]", {
-    playMode: "always",
-    timing: {
-      duration: 12000,
-    },
-    glitchTimeSpan: {
-      start: 0.13,
-      end: 0.15,
-    },
-  });
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    PowerGlitch.glitch("[data-index-hero-title]", {
+      playMode: "always",
+      timing: { duration: 14000 },
+      glitchTimeSpan: { start: 0.12, end: 0.16 },
+      shake: { velocity: 4, amplitudeX: 0.04, amplitudeY: 0.02 },
+      slice: { count: 3, velocity: 3, minHeight: 0.02, maxHeight: 0.1 },
+    });
+  }
 </script>
 
 <style>
-  .main-container {
-    min-height: 100vh;
-    padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
   .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding-block: clamp(3rem, 8vw, 7rem) clamp(4rem, 7vw, 6rem);
     text-align: center;
-    padding: 4rem 0;
   }
 
   .title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
-    display: table;
+    display: inline-block;
+    color: var(--accent);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.15;
+    text-shadow: 0 0 40px rgb(34 197 94 / 15%);
+    margin-bottom: 1.25rem;
     view-transition-name: name;
   }
 
-  .subtitle {
-    font-size: 1.25rem;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
+  [data-index-hero-title] {
+    display: inline-block;
   }
 
-  .description {
-    font-size: 1.1rem;
+  .intro {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    line-height: 1.8;
+    text-wrap: balance;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto repeat(var(--entry-count), auto);
+    gap: 1rem 1.25rem;
+  }
+
+  .columns > section {
+    display: grid;
+    grid-row: 1 / -1;
+    grid-template-rows: subgrid;
+  }
+
+  .column-title {
     color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.75rem;
+    padding-inline: clamp(1.25rem, 3vw, 3rem);
   }
 
-  .cta {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+  .entries {
+    display: grid;
+    grid-row: 2 / -1;
+    grid-template-rows: subgrid;
   }
 
-  .blog-section {
-    padding: 2rem 0;
-    border-top: 1px solid var(--border);
+  .entry {
+    position: relative;
+    display: grid;
+    align-content: start;
+    height: 100%;
+    gap: 0.75rem;
+    padding: clamp(1.25rem, 3vw, 3rem);
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 1.6s ease;
+    isolation: isolate;
   }
 
-  .blog-title {
-    font-size: 1.5rem;
-    font-weight: 600;
+  .entry::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--accent);
+    clip-path: inset(0 0 0 calc(100% - 24px));
+    opacity: 0.5;
+    pointer-events: none;
+    transition:
+      clip-path 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 1.6s ease,
+      filter 1.6s ease;
+  }
+
+  .adventures .entry::before {
+    clip-path: inset(0 calc(100% - 24px) 0 0);
+  }
+
+  .entry:is(:hover, :focus-visible) {
+    background-color: rgb(34 197 94 / 3%);
+  }
+
+  .entry:is(:hover, :focus-visible)::before {
+    clip-path: inset(0);
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgb(34 197 94 / 40%));
+  }
+
+  .entry:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+  }
+
+  .entry-meta {
+    color: var(--text-muted);
+    font-family: monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+  }
+
+  .entry-title {
     color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    text-align: center;
+    font-size: clamp(1.25rem, 2vw, 1.7rem);
+    line-height: 1.35;
+    text-wrap: pretty;
   }
 
-  .blog-list {
+  .entry-description {
+    font-size: 0.95rem;
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+
+  .home-footer {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 1rem;
+    margin-top: 5rem;
+    padding: 2rem clamp(1.25rem, 3vw, 3rem) 0;
   }
 
-  @media (max-width: 480px) {
-    .title {
-      font-size: 2.5rem;
+  .home-footer > a {
+    color: var(--text-muted);
+    font-family: monospace;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 700px) {
+    .columns {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: none;
+      gap: 3rem;
     }
 
-    .description {
-      font-size: 1rem;
+    .columns > section {
+      display: block;
+      grid-row: auto;
     }
 
-    .hero {
-      padding: 2rem 0;
+    .entries {
+      grid-row: auto;
+      grid-template-rows: none;
+      gap: 1rem;
+    }
+
+    .adventures .entry::before {
+      clip-path: inset(0 0 0 calc(100% - 24px));
+    }
+
+    .adventures .entry:is(:hover, :focus-visible)::before {
+      clip-path: inset(0);
+    }
+
+    .home-footer {
+      margin-top: 3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .entry,
+    .entry::before {
+      transition: none;
     }
   }
 </style>

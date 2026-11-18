@@ -157,12 +157,15 @@ li {
 
 .card-subtitle {
   display: block;
-  font-size: 0.85rem;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: lowercase;
   color: var(--text-muted);
 }
 
 .card-description {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.5;
 }
@@ -213,7 +216,7 @@ li {
 
   a[href^="http"]::after {
     content: " (" attr(href) ")";
-    font-size: 0.85em;
+    font-size: 1em;
     color: #666666;
     text-decoration: none;
   }

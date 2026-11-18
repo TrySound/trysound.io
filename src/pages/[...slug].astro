@@ -92,8 +92,11 @@ const { Content } = await render(post);
   }
 
   .article-date {
+    font-family: var(--font-heading);
+    font-weight: 500;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 1rem;
+    text-transform: lowercase;
   }
 
   .article-title {
@@ -164,7 +167,7 @@ const { Content } = await render(post);
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     font-family: "Monaco", "Menlo", monospace;
-    font-size: 0.9em;
+    font-size: 1em;
   }
 
   .article-content :global(pre) {

@@ -1,12 +1,12 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import Layout from "../layout.astro";
 import Socials from "../socials.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: post,
   }));
 }
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 ---
 
 <Layout
@@ -26,7 +26,7 @@ const { Content } = await post.render();
       <div class="article-meta">
         <time
           class="article-date"
-          style={`view-transition-name: ${post.slug}-date;`}
+          style={`view-transition-name: ${post.id}-date;`}
           datetime={post.data.date.toISOString()}
         >
           {
@@ -40,13 +40,13 @@ const { Content } = await post.render();
       </div>
       <h1
         class="article-title"
-        style={`view-transition-name: ${post.slug}-title;`}
+        style={`view-transition-name: ${post.id}-title;`}
       >
         {post.data.title}
       </h1>
       <p
         class="article-description"
-        style={`view-transition-name: ${post.slug}-description;`}
+        style={`view-transition-name: ${post.id}-description;`}
       >
         {post.data.description}
       </p>

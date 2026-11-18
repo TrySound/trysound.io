@@ -36,10 +36,10 @@ const sortedPosts = posts
           <div class="blog-list">
             {sortedPosts.map((post) => (
               <article class="card">
-                <a href={`/${post.slug}/`} class="card-link">
+                <a href={`/${post.id}/`} class="card-link">
                   <time
                     class="card-subtitle"
-                    style={`view-transition-name: ${post.slug}-date;`}
+                    style={`view-transition-name: ${post.id}-date;`}
                     datetime={post.data.date.toISOString()}
                   >
                     {post.data.date.toLocaleDateString("en-US", {
@@ -50,13 +50,13 @@ const sortedPosts = posts
                   </time>
                   <h3
                     class="card-title"
-                    style={`view-transition-name: ${post.slug}-title;`}
+                    style={`view-transition-name: ${post.id}-title;`}
                   >
                     {post.data.title}
                   </h3>
                   <p
                     class="card-description"
-                    style={`view-transition-name: ${post.slug}-description;`}
+                    style={`view-transition-name: ${post.id}-description;`}
                   >
                     {post.data.description}
                   </p>

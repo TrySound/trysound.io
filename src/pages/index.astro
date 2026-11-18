@@ -47,16 +47,11 @@ const adventures = [
 >
   <main>
     <header class="hero">
-      <h1 class="title" aria-label="TrySound">
+      <h1 class="title" aria-label="TrySound forked your repository">
         <span data-index-hero-title aria-hidden="true">
-          TrySound
+          TrySound forked your repository
         </span>
       </h1>
-      <p class="intro">
-        also known as Bogdan Chadkin
-        <br />
-        Here I write about open source and web.
-      </p>
     </header>
 
     <div
@@ -178,21 +173,15 @@ const adventures = [
   .title {
     display: inline-block;
     color: var(--accent);
-    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    text-wrap: balance;
     line-height: 1.15;
     text-shadow: 0 0 40px rgb(34 197 94 / 15%);
-    margin-bottom: 1.25rem;
     view-transition-name: name;
   }
 
   [data-index-hero-title] {
     display: inline-block;
-  }
-
-  .intro {
-    font-size: clamp(1rem, 1.6vw, 1.2rem);
-    line-height: 1.8;
-    text-wrap: balance;
   }
 
   .columns {

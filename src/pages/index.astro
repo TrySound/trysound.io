@@ -236,6 +236,32 @@ const adventures = [
     isolation: isolate;
   }
 
+  .entry::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgb(160 185 168 / 3%) 0 1px,
+        transparent 1px 3px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgb(5 12 8 / 18%) 0 1px,
+        transparent 1px 5px
+      ),
+      repeating-linear-gradient(
+        1deg,
+        rgb(102 145 117 / 4%) 0 1px,
+        transparent 1px 7px
+      );
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+
   .entry-border {
     position: absolute;
     inset: 0.5px;
@@ -263,6 +289,11 @@ const adventures = [
 
   .entry:is(:hover, :focus-visible) {
     background-color: rgb(34 197 94 / 3%);
+    transition-delay: var(--border-duration);
+  }
+
+  .entry:is(:hover, :focus-visible)::before {
+    opacity: 1;
     transition-delay: var(--border-duration);
   }
 
@@ -344,6 +375,8 @@ const adventures = [
   @media (prefers-reduced-motion: reduce) {
     .entry,
     .entry:is(:hover, :focus-visible),
+    .entry::before,
+    .entry:is(:hover, :focus-visible)::before,
     .entry-border,
     .entry-border path {
       transition: none;

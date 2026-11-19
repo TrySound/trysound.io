@@ -16,7 +16,7 @@ page; they are not reusable system components.
 | Prose              | [`src/styles.css`](../src/styles.css), [`src/pages/[...slug].astro`](../src/pages/[...slug].astro) | Shared `.prose` wrapper around native Markdown; headings, lists, quotes, code, links and responsive images.                                                                       |
 | Footer             | [`src/footer.astro`](../src/footer.astro)                                                          | Shared RSS link and socials for home/article pages.                                                                                                                               |
 | Socials            | [`src/socials.astro`](../src/socials.astro)                                                        | Native nav and named anchors containing sprite SVGs; share the content rather than reproducing icon links.                                                                        |
-| Motion and print   | Page scripts, Socials, global and page print CSS                                                   | Preserve intentional timing/play-mode differences. Central palette remap; page rules handle print layout, not a parallel color palette.                                           |
+| Motion             | Page scripts, Socials, shared CSS                                                                  | Preserve intentional timing/play-mode differences. CSS motion opts in under `no-preference` beside its owning selector; view-transition navigation is gated separately.           |
 
 All examples below use real source contracts. They are documentation, not a
 production component gallery or additional public route.
@@ -33,13 +33,11 @@ file, this guide or an agent prompt.
   role.
 - All three text roles and both accent roles are approved on all three surfaces,
   with a minimum **4.5:1** contrast ratio. Inverse action text uses
-  `--bg-primary` on accent/accent-hover. Recheck these combinations in screen
-  and print when changing the palette.
+  `--bg-primary` on accent/accent-hover. Recheck these combinations when
+  changing the palette.
 - Never use the decorative border color for informative text or as the only
   focus indicator. Custom card focus outlines use the accent role.
 - Preserve small-text contrast; do not dim informative metadata with opacity.
-- Print overrides remap the same roles. New shared rules must use these roles,
-  not literal print colors.
 
 ## Dimensions and typography
 
@@ -97,9 +95,8 @@ treatments, rules use the accent border, and images remain responsive.
 transition timing, accent on hover, and reduced-motion handling. Their underline
 offset transitions from 6px to 8px on hover. Only `.link` applies metadata font
 tokens and lowercase; prose links inherit their surrounding typography and
-casing. Native keyboard focus remains visible. Print continues to remap semantic
-colors and append external URLs. No Markdown class injection or article-only
-stylesheet is needed.
+casing. Native keyboard focus remains visible. No Markdown class injection or
+article-only stylesheet is needed.
 
 ## Real composition examples
 
@@ -144,7 +141,7 @@ offset before passing them to SVG: Firefox does not accept `calc()` in those SVG
 dash values. Browsers without the required CSS math/container support show a
 static full border. The SVG has no stretched viewBox, so stroke and tip lengths
 stay undistorted. The `--card-border-*` properties are recipe internals, not a
-new global token scale. Preserve the shared palette and print remapping.
+new global token scale. Preserve the shared palette.
 
 ### Article, footer and socials
 
@@ -182,25 +179,28 @@ template uses this same global class.
   The shared body uses `overflow-wrap: anywhere` to support enlarged text. Do
   not hide horizontal overflow to conceal a sizing bug.
 - Check 320/390/700/701/1440px, enlarged text and 200% browser zoom when
-  changing layout. Review affected pages, including print pagination.
+  changing layout. Review affected pages.
 - Language is English (`lang="en"`). Logical properties are preferred for new
   layout rules, but RTL/vertical writing are **not claimed supported**; do not
   rename every existing physical property as an unrelated cleanup.
 - Links must remain reachable in document order with visible keyboard focus.
-  Entry outlines supplement hover effects. Never disable outlines without an
+  Card outlines supplement hover effects. Never disable outlines without an
   equally visible, tested replacement. Use anchors for navigation/mail and
   native buttons for actions that change application state.
 - Home glitch: automatic, 14s cycle; article brand: hover, 600ms; socials:
   hover. The three local configurations intentionally differ. Each checks
-  reduced motion on load; reload after changing the preference. CSS link/card
-  transitions and view-transition group animations are disabled under reduced
-  motion.
+  reduced motion on load; reload after changing the preference. CSS transitions
+  and their delays opt in with nested `prefers-reduced-motion: no-preference`
+  rules beside their owning selectors. Cross-document view-transition navigation
+  is enabled only in a separate `no-preference` media rule; reduced motion gets
+  immediate state changes and normal navigation, without a global override list.
 - Glitch effects are decorative and may not change accessible names. Content and
   links work without JavaScript; home border geometry and hover/focus drawing
   use CSS/SVG, with a static full-border fallback.
-- Print hides shared footers, remaps palette and appends external URLs.
-  Page-specific print layout stays local. Do not override shared role colors
-  locally.
+- There are no print-specific styles: no palette remap, hidden footer/socials,
+  appended URLs, or print layout overrides. Browser print settings control
+  output; an optimized paper/PDF presentation is not part of the current
+  contract.
 
 ## Change policy
 

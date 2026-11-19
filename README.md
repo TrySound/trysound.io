@@ -48,8 +48,8 @@ Compilation checks do not prove appearance or accessibility. Before shipping:
   and article image alternatives.
 - Enable reduced motion before loading each page. Glitch initialization reads
   the preference on load; reload after changing the OS preference.
-- Inspect print preview/PDF at actual paper size, especially URL wrapping and
-  article page breaks.
+- If reviewing print output, note that there are no print-specific styles:
+  palette, footer/social visibility, and URL presentation are not remapped.
 - Check enlarged text and browser zoom/reflow. Recheck text contrast when
   changing palette roles or foreground/surface combinations.
 

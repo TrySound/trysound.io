@@ -1,7 +1,9 @@
 @import "./fonts.css";
 
-@view-transition {
-  navigation: auto;
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
 }
 
 :root {
@@ -131,9 +133,11 @@ body {
   text-decoration: underline;
   text-underline-offset: 6px;
   overflow-wrap: break-word;
-  transition:
-    color 0.2s ease,
-    text-underline-offset 0.2s ease;
+  @media (prefers-reduced-motion: no-preference) {
+    transition:
+      color 0.2s ease,
+      text-underline-offset 0.2s ease;
+  }
 
   &:hover {
     color: var(--accent);
@@ -319,8 +323,11 @@ body {
   padding: clamp(1.25rem, 2vw, 2rem);
   color: inherit;
   text-decoration: none;
-  transition: background-color 400ms ease;
   isolation: isolate;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: background-color 400ms ease;
+  }
 
   &::before {
     content: "";
@@ -345,16 +352,25 @@ body {
         transparent 1px 7px
       );
     opacity: 0;
-    transition: opacity 400ms ease;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: opacity 400ms ease;
+    }
   }
 
   &:is(:hover, :focus-visible) {
     background-color: rgb(34 197 94 / 3%);
-    transition-delay: var(--card-border-duration);
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition-delay: var(--card-border-duration);
+    }
 
     &::before {
       opacity: 1;
-      transition-delay: var(--card-border-duration);
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition-delay: var(--card-border-duration);
+      }
     }
 
     .card-border {
@@ -384,12 +400,16 @@ body {
   opacity: 0.5;
   pointer-events: none;
   overflow: visible;
-  transition:
-    opacity var(--card-border-duration) ease,
-    filter var(--card-border-duration) ease;
+  @media (prefers-reduced-motion: no-preference) {
+    transition:
+      opacity var(--card-border-duration) ease,
+      filter var(--card-border-duration) ease;
+  }
 
   rect {
-    transition: stroke-dasharray var(--card-border-duration) linear;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: stroke-dasharray var(--card-border-duration) linear;
+    }
   }
 
   /* tan(atan2(a, b)) computes a/b without newer typed CSS division.
@@ -418,61 +438,6 @@ body {
       );
       stroke-dasharray: var(--card-border-visible) var(--card-border-gap);
       stroke-dashoffset: var(--card-border-offset);
-    }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card,
-  .card:is(:hover, :focus-visible),
-  .card::before,
-  .card:is(:hover, :focus-visible)::before,
-  .card-border,
-  .card-border rect {
-    transition: none;
-  }
-
-  .link,
-  .prose a {
-    transition: none;
-  }
-
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none;
-  }
-}
-
-@media print {
-  :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #ffffff;
-    --text-primary: #000000;
-    --text-secondary: #222222;
-    --text-muted: #666666;
-    --accent: #000000;
-    --accent-hover: #000000;
-    --border: #cccccc;
-  }
-
-  body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    padding: 0;
-    max-width: 100%;
-  }
-
-  a {
-    color: var(--accent);
-    text-decoration: underline;
-
-    &[href^="http"]::after {
-      content: " (" attr(href) ")";
-      font-size: 1em;
-      color: var(--text-muted);
-      text-decoration: none;
     }
   }
 }

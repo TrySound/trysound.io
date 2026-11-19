@@ -43,9 +43,13 @@
 
   a {
     color: var(--text-muted);
-    transition: color 0.2s ease;
     display: flex;
     align-items: center;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: color 0.2s ease;
+    }
+
     &:hover {
       color: var(--accent);
     }
@@ -55,11 +59,5 @@
     width: 20px;
     height: 20px;
     fill: currentColor;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    a {
-      transition: none;
-    }
   }
 </style>

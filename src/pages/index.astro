@@ -88,8 +88,8 @@ const projects = [
         <div class="entries">
           {sortedPosts.map((post) => (
             <article>
-              <a href={`/${post.id}/`} class="entry">
-                <svg class="entry-border" aria-hidden="true">
+              <a href={`/${post.id}/`} class="card">
+                <svg class="card-border" aria-hidden="true">
                   <rect width="100%" height="100%" pathLength="100" />
                 </svg>
                 <time
@@ -110,7 +110,7 @@ const projects = [
                   {post.data.title}
                 </h3>
                 <p
-                  class="entry-description text-body"
+                  class="text-body"
                   style={`view-transition-name: ${post.id}-description;`}
                 >
                   {post.data.description}
@@ -130,18 +130,18 @@ const projects = [
             <article>
               <a
                 href={project.href}
-                class="entry"
+                class="card"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <svg class="entry-border" aria-hidden="true">
+                <svg class="card-border" aria-hidden="true">
                   <rect width="100%" height="100%" pathLength="100" />
                 </svg>
                 <span class="metadata">
                   {project.role} · {project.period}
                 </span>
                 <h3 class="heading-md">{project.name}</h3>
-                <p class="entry-description text-body">{project.description}</p>
+                <p class="text-body">{project.description}</p>
               </a>
             </article>
           ))}
@@ -158,11 +158,11 @@ const projects = [
           <article>
             <a
               href={adventure.href}
-              class="entry"
+              class="card"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <svg class="entry-border" aria-hidden="true">
+              <svg class="card-border" aria-hidden="true">
                 <rect width="100%" height="100%" pathLength="100" />
               </svg>
               <span class="metadata">
@@ -196,24 +196,6 @@ const projects = [
 </script>
 
 <style>
-  @property --entry-border-visible {
-    syntax: "<number>";
-    inherits: false;
-    initial-value: 100;
-  }
-
-  @property --entry-border-gap {
-    syntax: "<number>";
-    inherits: false;
-    initial-value: 0;
-  }
-
-  @property --entry-border-offset {
-    syntax: "<number>";
-    inherits: false;
-    initial-value: 0;
-  }
-
   .hero {
     padding-block: clamp(3rem, 8vw, 7rem) clamp(4rem, 7vw, 6rem);
     text-align: center;
@@ -262,131 +244,9 @@ const projects = [
     grid-template-rows: subgrid;
   }
 
-  .entry {
-    --border-duration: 800ms;
-    position: relative;
-    display: grid;
-    align-content: start;
-    height: 100%;
-    gap: 0.75rem;
-    padding: clamp(1.25rem, 2vw, 2rem);
-    color: inherit;
-    text-decoration: none;
-    transition: background-color 400ms ease;
-    isolation: isolate;
-  }
-
-  .entry::before {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    z-index: -1;
-    pointer-events: none;
-    background-image:
-      repeating-linear-gradient(
-        0deg,
-        rgb(160 185 168 / 3%) 0 1px,
-        transparent 1px 3px
-      ),
-      repeating-linear-gradient(
-        0deg,
-        rgb(5 12 8 / 18%) 0 1px,
-        transparent 1px 5px
-      ),
-      repeating-linear-gradient(
-        1deg,
-        rgb(102 145 117 / 4%) 0 1px,
-        transparent 1px 7px
-      );
-    opacity: 0;
-    transition: opacity 400ms ease;
-  }
-
-  .entry-border {
-    position: absolute;
-    inset: 0.5px;
-    width: calc(100% - 1px);
-    height: calc(100% - 1px);
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 1px;
-    opacity: 0.5;
-    pointer-events: none;
-    overflow: visible;
-    transition:
-      opacity var(--border-duration) ease,
-      filter var(--border-duration) ease;
-
-    rect {
-      transition: stroke-dasharray var(--border-duration) linear;
-    }
-  }
-
-  /* tan(atan2(a, b)) computes a/b without newer typed CSS division.
-   * Registered numbers keep calc() out of SVG dash properties for Firefox. */
-  @supports (opacity: calc(tan(atan2(1px, 1px)))) and (container-type: size) {
-    .entry-border {
-      container-type: size;
-
-      rect {
-        --entry-border-cap: min(48px, 50cqw);
-        --entry-border-perimeter: calc(2 * (100cqw + 100cqh));
-        --entry-border-visible: calc(
-          100 *
-            tan(
-              atan2(
-                100cqh + 2 * var(--entry-border-cap),
-                var(--entry-border-perimeter)
-              )
-            )
-        );
-        --entry-border-gap: calc(100 - var(--entry-border-visible));
-        --entry-border-offset: calc(
-          -100 *
-            tan(
-              atan2(
-                100cqw - var(--entry-border-cap),
-                var(--entry-border-perimeter)
-              )
-            )
-        );
-        stroke-dasharray: var(--entry-border-visible) var(--entry-border-gap);
-        stroke-dashoffset: var(--entry-border-offset);
-      }
-    }
-  }
-
-  .projects .entry-border,
-  .adventure-grid > article:nth-child(even) .entry-border {
+  .projects .card-border,
+  .adventure-grid > article:nth-child(even) .card-border {
     transform: scaleX(-1);
-  }
-
-  .entry:is(:hover, :focus-visible) {
-    background-color: rgb(34 197 94 / 3%);
-    transition-delay: var(--border-duration);
-  }
-
-  .entry:is(:hover, :focus-visible)::before {
-    opacity: 1;
-    transition-delay: var(--border-duration);
-  }
-
-  .entry:is(:hover, :focus-visible) .entry-border {
-    opacity: 1;
-    filter: drop-shadow(0 0 5px rgb(34 197 94 / 40%));
-  }
-
-  .entry:is(:hover, :focus-visible) .entry-border rect {
-    stroke-dasharray: 100 0;
-  }
-
-  .entry:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 5px;
-  }
-
-  .entry-description {
-    max-width: 60ch;
   }
 
   .footer-container {
@@ -415,20 +275,9 @@ const projects = [
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .projects .entry-border,
-    .adventure-grid > article:nth-child(even) .entry-border {
+    .projects .card-border,
+    .adventure-grid > article:nth-child(even) .card-border {
       transform: none;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .entry,
-    .entry:is(:hover, :focus-visible),
-    .entry::before,
-    .entry:is(:hover, :focus-visible)::before,
-    .entry-border,
-    .entry-border rect {
-      transition: none;
     }
   }
 </style>

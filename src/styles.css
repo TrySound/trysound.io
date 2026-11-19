@@ -291,7 +291,147 @@ body {
   }
 }
 
+@property --card-border-visible {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 100;
+}
+
+@property --card-border-gap {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --card-border-offset {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.card {
+  --card-border-duration: 800ms;
+  position: relative;
+  display: grid;
+  align-content: start;
+  height: 100%;
+  gap: 0.75rem;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 400ms ease;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgb(160 185 168 / 3%) 0 1px,
+        transparent 1px 3px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgb(5 12 8 / 18%) 0 1px,
+        transparent 1px 5px
+      ),
+      repeating-linear-gradient(
+        1deg,
+        rgb(102 145 117 / 4%) 0 1px,
+        transparent 1px 7px
+      );
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+
+  &:is(:hover, :focus-visible) {
+    background-color: rgb(34 197 94 / 3%);
+    transition-delay: var(--card-border-duration);
+
+    &::before {
+      opacity: 1;
+      transition-delay: var(--card-border-duration);
+    }
+
+    .card-border {
+      opacity: 1;
+      filter: drop-shadow(0 0 5px rgb(34 197 94 / 40%));
+
+      rect {
+        stroke-dasharray: 100 0;
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+  }
+}
+
+.card-border {
+  position: absolute;
+  inset: 0.5px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1px;
+  opacity: 0.5;
+  pointer-events: none;
+  overflow: visible;
+  transition:
+    opacity var(--card-border-duration) ease,
+    filter var(--card-border-duration) ease;
+
+  rect {
+    transition: stroke-dasharray var(--card-border-duration) linear;
+  }
+
+  /* tan(atan2(a, b)) computes a/b without newer typed CSS division.
+   * Registered numbers keep calc() out of SVG dash properties for Firefox. */
+  @supports (opacity: calc(tan(atan2(1px, 1px)))) and (container-type: size) {
+    container-type: size;
+
+    rect {
+      --card-border-cap: min(48px, 50cqw);
+      --card-border-perimeter: calc(2 * (100cqw + 100cqh));
+      --card-border-visible: calc(
+        100 *
+          tan(
+            atan2(
+              100cqh + 2 * var(--card-border-cap),
+              var(--card-border-perimeter)
+            )
+          )
+      );
+      --card-border-gap: calc(100 - var(--card-border-visible));
+      --card-border-offset: calc(
+        -100 *
+          tan(
+            atan2(100cqw - var(--card-border-cap), var(--card-border-perimeter))
+          )
+      );
+      stroke-dasharray: var(--card-border-visible) var(--card-border-gap);
+      stroke-dashoffset: var(--card-border-offset);
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .card,
+  .card:is(:hover, :focus-visible),
+  .card::before,
+  .card:is(:hover, :focus-visible)::before,
+  .card-border,
+  .card-border rect {
+    transition: none;
+  }
+
   .link,
   .prose a {
     transition: none;

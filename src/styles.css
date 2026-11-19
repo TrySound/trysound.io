@@ -10,7 +10,7 @@
   --bg-secondary: #141414;
   --bg-tertiary: #1a1a1a;
   --text-primary: #fafafa;
-  --text-secondary: #b3b3b3;
+  --text-secondary: #d4d4d4;
   --text-muted: #858585;
   --accent: #22c55e;
   --accent-hover: #16a34a;
@@ -223,7 +223,7 @@ li {
     --bg-secondary: #ffffff;
     --bg-tertiary: #ffffff;
     --text-primary: #000000;
-    --text-secondary: #333333;
+    --text-secondary: #222222;
     --text-muted: #666666;
     --accent: #000000;
     --accent-hover: #000000;

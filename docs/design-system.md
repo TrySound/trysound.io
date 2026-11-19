@@ -29,8 +29,8 @@ The values live only in `src/styles.css`. Do not duplicate a palette in a JSON
 file, this guide or an agent prompt.
 
 - Surfaces: `--bg-primary`, `--bg-secondary`, `--bg-tertiary`.
-- Normal text: `--text-primary` (headings/strong), `--text-secondary` (body),
-  `--text-muted` (metadata).
+- Normal text: `--text-primary` (headings/strong), `--text-secondary` (body and
+  supporting copy), `--text-muted` (metadata and blockquotes).
 - Actions: `--accent`, `--accent-hover`; `--border` is decorative, not a text
   role.
 - All three text roles and both accent roles are approved on all three surfaces,
@@ -59,8 +59,9 @@ need the same decision to change together.
   uses accent). An unstyled heading inherits body color. Semantic level follows
   page structure.
 - Metadata: `.metadata`; home adds letter spacing locally.
-- Prose: fluid 1.125–1.25rem with 1.7 line height; article-specific rules stay
-  scoped.
+- Prose: fluid 1.125–1.25rem with 1.7 line height; article body uses secondary
+  text, while blockquotes use muted text with an accent border and no
+  background. Article-specific rules stay scoped.
 
 ## Real composition examples
 

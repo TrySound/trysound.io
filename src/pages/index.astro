@@ -228,9 +228,11 @@ const projects = [
   .title {
     display: inline-block;
     color: var(--accent);
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    text-wrap: balance;
-    line-height: 1.15;
+    font-family: var(--heading-xl-font);
+    font-size: var(--heading-xl-size);
+    font-weight: var(--heading-xl-weight);
+    line-height: var(--heading-xl-leading);
+    letter-spacing: var(--heading-xl-tracking);
     text-shadow: 0 0 40px rgb(34 197 94 / 15%);
     view-transition-name: name;
   }
@@ -264,8 +266,11 @@ const projects = [
 
   .column-title {
     color: var(--text-secondary);
-    font-size: 1rem;
-    letter-spacing: 0.08em;
+    font-family: var(--label-font);
+    font-size: var(--label-size);
+    font-weight: var(--label-weight);
+    line-height: var(--label-leading);
+    letter-spacing: var(--label-tracking);
     margin-bottom: 1.75rem;
     padding-inline: clamp(1.25rem, 2vw, 2rem);
   }
@@ -366,19 +371,16 @@ const projects = [
     outline-offset: 5px;
   }
 
-  .entry-meta {
-    letter-spacing: 0.02em;
-  }
-
   .entry-title {
     color: var(--text-primary);
-    font-size: clamp(1.25rem, 2vw, 1.7rem);
-    line-height: 1.35;
-    text-wrap: pretty;
+    font-family: var(--heading-md-font);
+    font-size: var(--heading-md-size);
+    font-weight: var(--heading-md-weight);
+    line-height: var(--heading-md-leading);
+    letter-spacing: var(--heading-md-tracking);
   }
 
   .entry-description {
-    font-size: 1rem;
     max-width: 60ch;
     text-wrap: pretty;
   }

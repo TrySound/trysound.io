@@ -106,10 +106,11 @@ const { Content } = await render(post);
 
   .brand {
     display: inline-block;
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 1.2;
+    font-family: var(--heading-md-font);
+    font-size: var(--heading-md-size);
+    font-weight: var(--heading-md-weight);
+    line-height: var(--heading-md-leading);
+    letter-spacing: var(--heading-md-tracking);
     text-decoration: none;
     view-transition-name: name;
   }
@@ -136,28 +137,41 @@ const { Content } = await render(post);
   }
 
   .article-title {
-    font-size: 2rem;
+    font-family: var(--heading-lg-font);
+    font-size: var(--heading-lg-size);
+    font-weight: var(--heading-lg-weight);
+    line-height: var(--heading-lg-leading);
+    letter-spacing: var(--heading-lg-tracking);
     color: var(--text-primary);
     margin-bottom: 1rem;
-    line-height: 1.3;
-    text-wrap: balance;
   }
 
   .article-content {
-    font-size: clamp(1.125rem, 1rem + 0.3vw, 1.25rem);
-    line-height: 1.7;
+    font-family: var(--prose-font);
+    font-size: var(--prose-size);
+    font-weight: var(--prose-weight);
+    line-height: var(--prose-leading);
+    letter-spacing: var(--prose-tracking);
     text-wrap: pretty;
   }
 
   .article-content :global(h2) {
-    font-size: 1.5rem;
+    font-family: var(--heading-md-font);
+    font-size: var(--heading-md-size);
+    font-weight: var(--heading-md-weight);
+    line-height: var(--heading-md-leading);
+    letter-spacing: var(--heading-md-tracking);
     color: var(--text-primary);
     margin-top: 2.5rem;
     margin-bottom: 1rem;
   }
 
   .article-content :global(h3) {
-    font-size: 1.25rem;
+    font-family: var(--heading-sm-font);
+    font-size: var(--heading-sm-size);
+    font-weight: var(--heading-sm-weight);
+    line-height: var(--heading-sm-leading);
+    letter-spacing: var(--heading-sm-tracking);
     color: var(--text-primary);
     margin-top: 2rem;
     margin-bottom: 0.75rem;
@@ -200,8 +214,11 @@ const { Content } = await render(post);
     color: var(--accent);
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
-    font-family: "Monaco", "Menlo", monospace;
-    font-size: 1em;
+    font-family: var(--code-font);
+    font-size: var(--code-size);
+    font-weight: var(--code-weight);
+    line-height: var(--code-leading);
+    letter-spacing: var(--code-tracking);
   }
 
   .article-content :global(pre) {
@@ -226,11 +243,5 @@ const { Content } = await render(post);
 
   .article-content :global(a) {
     overflow-wrap: break-word;
-  }
-
-  @media (min-width: 640px) {
-    .article-title {
-      font-size: 2.5rem;
-    }
   }
 </style>

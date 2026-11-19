@@ -10,8 +10,8 @@ page; they are not reusable system components.
 | Decision / pattern | Canonical source                                                                 | Anatomy and permitted variation                                                                                                                                                                       |
 | ------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Shell              | [`src/layout.astro`](../src/layout.astro), [`src/styles.css`](../src/styles.css) | Document metadata, global stylesheet and slot. Typed `mode`: `default` (800px), `article` (60rem), `wide` (100rem). Modes are mutually exclusive; optional `title`/`description`.                     |
-| Fonts and type     | [`src/fonts.css`](../src/fonts.css), global CSS, page styles                     | Rajdhani 500 headings/metadata, system body font. Display, headings and prose sizes stay contextual. No downloaded body font.                                                                         |
-| Metadata           | Global `.metadata`                                                               | Muted color, heading font, 500 weight, 1rem, lowercase. Use real `<time datetime="…">` elements for dates; the class provides typography, not date semantics.                                         |
+| Fonts and type     | [`src/fonts.css`](../src/fonts.css), global CSS, page styles                     | Shared family primitives and semantic typography variables in global CSS; page rules consume roles. No downloaded body font.                                                                          |
+| Metadata           | Global `.metadata`                                                               | Muted color, shared metadata typography, lowercase. Use real `<time datetime="…">` elements for dates; the class provides typography, not date semantics.                                             |
 | Linked entry       | [`src/pages/index.astro`](../src/pages/index.astro)                              | Article wrapper, full-entry anchor, decorative border SVG, optional metadata, heading, optional summary. Home-local recipe; posts, projects and adventures keep their content/transition differences. |
 | Prose              | [`src/pages/[...slug].astro`](../src/pages/[...slug].astro)                      | Content wrapper around rendered Markdown; scoped headings, lists, quotes, code and responsive images.                                                                                                 |
 | Footer             | [`src/footer.astro`](../src/footer.astro)                                        | Shared RSS link and socials for home/article pages.                                                                                                                                                   |
@@ -43,20 +43,39 @@ file, this guide or an agent prompt.
 
 ## Dimensions and typography
 
-Global `.metadata` is shared because multiple real contexts have identical
-styling. Other spacing, type and radius values remain local CSS literals where
-that is clearer. Promote a value when several consumers need the same decision
-to change together, not to introduce a token for each number.
+Typography has two layers, both defined in
+[`src/styles.css`](../src/styles.css): family primitives (`--font-heading`,
+`--font-body`, `--font-code`) and semantic roles. Each role exposes `-font`,
+`-size`, `-weight`, `-leading`, and `-tracking`. Only families are aliased; the
+other values are declared directly on each role. Keep these values central,
+without page-local typography overrides or a second numeric scale. Colors, text
+transformation, decoration, and layout remain with consuming classes. All native
+headings (`h1`–`h6`) use global balanced wrapping; prose and descriptions keep
+contextual wrapping. Spacing and radius values stay local where clearer.
 
-- Body: system font stack, secondary text, 1.6 line height.
-- Display: home-only fluid green title; do not apply it to every page heading.
-- Headings: Rajdhani; page heading classes use primary text (the home display
-  uses accent). An unstyled heading inherits body color. Semantic level follows
-  page structure.
-- Metadata: `.metadata`; home adds letter spacing locally.
-- Prose: fluid 1.125–1.25rem with 1.7 line height; article body uses secondary
-  text, while blockquotes use muted text with an accent border and no
-  background. Article-specific rules stay scoped.
+| Role             | Consumers                                                        |
+| ---------------- | ---------------------------------------------------------------- |
+| `--heading-xl-*` | Homepage hero `.title`                                           |
+| `--heading-lg-*` | Article `.article-title`                                         |
+| `--heading-md-*` | Homepage `.entry-title`, article `.brand`, prose `h2`            |
+| `--heading-sm-*` | Prose `h3`; global fallback for otherwise unstyled headings      |
+| `--label-*`      | Homepage `.column-title` section labels                          |
+| `--metadata-*`   | Shared `.metadata` dates, roles, periods, and `.footer-backlink` |
+| `--body-*`       | Body, inherited by entry descriptions                            |
+| `--prose-*`      | Article content, inherited by paragraphs, lists, and blockquotes |
+| `--code-*`       | Article inline and fenced code                                   |
+
+All heading sizes and prose size are fluid; other roles are fixed or relative.
+Heading size roles are visual, not HTML heading levels: semantic level follows
+page structure. The home hero uses accent; other heading colors stay contextual.
+Metadata is lowercase and uses consistent tracking across pages. Prose uses
+secondary text; blockquotes use muted text with an accent border and no
+background. Strong text retains its local emphasis weight and primary color;
+italics remain native emphasis. Code has an explicit normal weight and
+prose-compatible leading; CSS-wide `inherit` is not stored in root custom
+properties, where it would inherit the custom property itself rather than the
+consuming font property. Syntax highlighting remains responsible for code-token
+colors.
 
 ## Real composition examples
 

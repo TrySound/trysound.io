@@ -6,6 +6,64 @@
 
 :root {
   --font-heading: "Rajdhani", sans-serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-code: "Monaco", "Menlo", monospace;
+
+  --heading-xl-font: var(--font-heading);
+  --heading-xl-size: clamp(3rem, 6vw, 5.5rem);
+  --heading-xl-weight: 500;
+  --heading-xl-leading: 1.15;
+  --heading-xl-tracking: 0;
+
+  --heading-lg-font: var(--font-heading);
+  --heading-lg-size: clamp(2rem, 1.75rem + 1vw, 2.5rem);
+  --heading-lg-weight: 500;
+  --heading-lg-leading: 1.3;
+  --heading-lg-tracking: 0;
+
+  --heading-md-font: var(--font-heading);
+  --heading-md-size: clamp(1.5rem, 1.375rem + 0.5vw, 1.75rem);
+  --heading-md-weight: 500;
+  --heading-md-leading: 1.7;
+  --heading-md-tracking: 0;
+
+  --heading-sm-font: var(--font-heading);
+  --heading-sm-size: clamp(1.25rem, 1.125rem + 0.5vw, 1.5rem);
+  --heading-sm-weight: 500;
+  --heading-sm-leading: 1.7;
+  --heading-sm-tracking: 0;
+
+  --label-font: var(--font-heading);
+  --label-size: 1rem;
+  --label-weight: 500;
+  --label-leading: 1.6;
+  --label-tracking: 0.08em;
+
+  --metadata-font: var(--font-heading);
+  --metadata-size: 1rem;
+  --metadata-weight: 500;
+  --metadata-leading: 1.6;
+  --metadata-tracking: 0.02em;
+
+  --body-font: var(--font-body);
+  --body-size: 1rem;
+  --body-weight: 400;
+  --body-leading: 1.6;
+  --body-tracking: 0;
+
+  --prose-font: var(--font-body);
+  --prose-size: clamp(1rem, 0.875rem + 0.5vw, 1.25rem);
+  --prose-weight: 400;
+  --prose-leading: 1.7;
+  --prose-tracking: 0;
+
+  --code-font: var(--font-code);
+  --code-size: 1em;
+  --code-weight: 400;
+  --code-leading: 1.7;
+  --code-tracking: 0;
+
   --bg-primary: #0a0a0a;
   --bg-secondary: #141414;
   --bg-tertiary: #1a1a1a;
@@ -24,16 +82,13 @@
 }
 
 body {
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
+  font-family: var(--body-font);
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-leading);
+  letter-spacing: var(--body-tracking);
   background-color: var(--bg-primary);
   color: var(--text-secondary);
-  line-height: 1.6;
   overflow-wrap: anywhere;
   width: 100%;
   max-width: 800px;
@@ -48,8 +103,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
-  font-weight: 500;
+  font-family: var(--heading-sm-font);
+  font-size: var(--heading-sm-size);
+  font-weight: var(--heading-sm-weight);
+  line-height: var(--heading-sm-leading);
+  letter-spacing: var(--heading-sm-tracking);
+  text-wrap: balance;
 }
 
 body.article-page {
@@ -76,18 +135,22 @@ li {
   margin-bottom: 0.5rem;
 }
 
-.metadata {
-  font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: 1rem;
+.metadata,
+.footer-backlink {
+  font-family: var(--metadata-font);
+  font-size: var(--metadata-size);
+  font-weight: var(--metadata-weight);
+  line-height: var(--metadata-leading);
+  letter-spacing: var(--metadata-tracking);
   text-transform: lowercase;
+}
+
+.metadata {
   color: var(--text-muted);
 }
 
 .footer-backlink {
-  font-family: var(--font-heading);
   color: var(--text-secondary);
-  font-weight: 500;
   &:hover {
     color: var(--accent);
   }

@@ -8,7 +8,6 @@ not a generic component library.
 
 - Shell, document metadata and typed modes: `src/layout.astro`.
 - Semantic palette, metadata, shared backlink and print remap: `src/styles.css`.
-- Hire-local cards, CTA, section headings and footer: `src/pages/hire-me.astro`.
 - Font: `src/fonts.css`; prose/entry styles are scoped to their page templates.
 - Shared footer/social content: `src/footer.astro`, `src/socials.astro`.
 - Content contract: `src/content.config.ts`; pages: `src/pages/`.

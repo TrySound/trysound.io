@@ -41,15 +41,15 @@ automated browser test suite.
 
 Compilation checks do not prove appearance or accessibility. Before shipping:
 
-- Review home, article and hire pages at 320px and desktop widths.
+- Review home and article pages at 320px and desktop widths.
 - Tab and Shift+Tab through each page. Confirm focus stays visible; activate an
-  article, mail CTA and social link.
+  article, RSS and social link.
 - With VoiceOver or NVDA, verify titles, heading order, landmarks, link names
   and article image alternatives.
 - Enable reduced motion before loading each page. Glitch initialization reads
   the preference on load; reload after changing the OS preference.
 - Inspect print preview/PDF at actual paper size, especially URL wrapping and
-  résumé page breaks.
+  article page breaks.
 - Check enlarged text and browser zoom/reflow. Recheck text contrast when
   changing palette roles or foreground/surface combinations.
 
@@ -67,6 +67,6 @@ reuse friction in a PR or issue rather than building abstractions speculatively.
 The live site is hosted on Netlify. Hosting dashboard settings are not stored in
 this checkout; confirm the intended build command and output directory there.
 The full build command is `pnpm build`, and Astro outputs to `dist/`. Deploy
-through the existing hosting configuration, then verify `/`, `/hire-me/`, an
-article and `/rss.xml`. Article publication to the AT Protocol is a separate,
-explicit action.
+through the existing hosting configuration, then verify `/`, an article and
+`/rss.xml`. Article publication to the AT Protocol is a separate, explicit
+action.

@@ -48,7 +48,9 @@ define one site-wide focus appearance. `.link` and `.prose a` share a nested
 scrollable `.prose pre` code blocks, the article `.brand`, and the Socials
 component's anchors each apply both variables in their own focus rule. There is
 no global focus override. Preserve each consumer's native semantics and keyboard
-reachability; new interactive patterns must opt in explicitly.
+reachability; new interactive patterns must opt in explicitly. The global reset
+suppresses native mobile tap highlighting with `-webkit-tap-highlight-color`;
+keyboard outlines and intentional hover/focus feedback remain enabled.
 
 ## Dimensions and typography
 
@@ -134,7 +136,7 @@ levels for the surrounding document structure and reuse existing text classes.
 Never nest another link, button, or form control inside the card link.
 
 - `.card` owns its internal grid, padding, full-height fill, decorative texture,
-  hover/focus sequence, and visible focus outline.
+  hover/focus sequence and visible focus outline.
 - `.card-border` is an `aria-hidden` SVG containing the shown rect. It owns the
   border geometry, glow, and drawing transition; retain its percentage
   dimensions and normalized path length.

@@ -182,6 +182,7 @@ li {
 }
 
 .footer-backlink {
+  font-family: var(--font-heading);
   color: var(--text-secondary);
   font-weight: 500;
   &:hover {

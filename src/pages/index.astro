@@ -10,32 +10,59 @@ const sortedPosts = posts
 
 const adventures = [
   {
-    name: "Engramma",
-    role: "Author · 2025–present",
-    href: "https://github.com/TrySound/engramma",
-    description:
-      "A home for design tokens. Generate style guides and manage the foundations of a design system.",
-  },
-  {
     name: "SVGO",
-    role: "Maintainer · 2021–2023",
+    role: "Core maintainer",
+    period: "2020–present",
     href: "https://github.com/svg/svgo",
-    description:
-      "Making SVGs smaller. Rebuilt the plugin system, reduced package size, and improved stability.",
   },
   {
     name: "Rollup",
-    role: "Contributor · 2015–2018",
+    role: "Core maintainer & plugin author",
+    period: "2015–2021",
     href: "https://github.com/rollup/rollup",
-    description:
-      "An ES module bundler. Worked on persistent caching, tree-shaking, and the plugin ecosystem.",
   },
   {
-    name: "PostCSS ecosystem",
-    role: "Contributor · 2015–2016",
+    name: "React Virtualized",
+    role: "Core maintainer",
+    period: "2017–2019",
+    href: "https://github.com/bvaughn/react-virtualized",
+  },
+  {
+    name: "PostCSS",
+    role: "Core maintainer & plugin author",
+    period: "2015–2017",
     href: "https://github.com/postcss/postcss",
+  },
+  {
+    name: "cssnano",
+    role: "Co-creator",
+    period: "2015–2016",
+    href: "https://github.com/cssnano/cssnano",
+  },
+];
+
+const projects = [
+  {
+    name: "Libras",
+    role: "Creator",
+    period: "2026–present",
+    href: "https://github.com/TrySound/libras",
     description:
-      "Transforming CSS with JavaScript. Co-authored cssnano and created postcss-value-parser.",
+      "A minimalistic player for your own music server, with offline listening.",
+  },
+  {
+    name: "Engramma",
+    role: "Creator",
+    period: "2025–present",
+    href: "https://github.com/TrySound/engramma",
+    description: "A design-token editor with live previews and style guides.",
+  },
+  {
+    name: "Rifm",
+    role: "Co-creator",
+    period: "2018–present",
+    href: "https://github.com/realadvisor/rifm",
+    description: "A small React library for formatted and masked inputs.",
   },
 ];
 ---
@@ -56,7 +83,7 @@ const adventures = [
 
     <div
       class="columns"
-      style={`--entry-count: ${Math.max(sortedPosts.length, adventures.length)};`}
+      style={`--entry-count: ${Math.max(sortedPosts.length, projects.length)};`}
     >
       <section class="posts" aria-labelledby="posts-title">
         <h2 id="posts-title" class="column-title">
@@ -98,30 +125,65 @@ const adventures = [
         </div>
       </section>
 
-      <section class="adventures" aria-labelledby="adventures-title">
-        <h2 id="adventures-title" class="column-title">
-          open source adventures
+      <section class="projects" aria-labelledby="projects-title">
+        <h2 id="projects-title" class="column-title">
+          my projects
         </h2>
         <div class="entries">
-          {adventures.map((adventure) => (
+          {projects.map((project) => (
             <article>
-              <a href={adventure.href} class="entry">
+              <a
+                href={project.href}
+                class="entry"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg class="entry-border" aria-hidden="true">
                   <path pathLength="100" />
                 </svg>
-                <span class="entry-meta">{adventure.role}</span>
-                <h3 class="entry-title">{adventure.name}</h3>
-                <p class="entry-description">{adventure.description}</p>
+                <span class="entry-meta">
+                  {project.role} · {project.period}
+                </span>
+                <h3 class="entry-title">{project.name}</h3>
+                <p class="entry-description">{project.description}</p>
               </a>
             </article>
           ))}
         </div>
       </section>
     </div>
+
+    <section class="adventures" aria-labelledby="adventures-title">
+      <h2 id="adventures-title" class="column-title">
+        open source adventures
+      </h2>
+      <div class="adventure-grid">
+        {adventures.map((adventure) => (
+          <article>
+            <a
+              href={adventure.href}
+              class="entry"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg class="entry-border" aria-hidden="true">
+                <path pathLength="100" />
+              </svg>
+              <span class="entry-meta">
+                {adventure.role} · {adventure.period}
+              </span>
+              <h3 class="entry-title">{adventure.name}</h3>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
   </main>
 
   <footer class="home-footer">
-    <a href="/rss.xml" class="footer-backlink">RSS feed</a>
+    <a href="/rss.xml" class="footer-backlink">
+      RSS feed
+    </a>
     <Socials />
   </footer>
 </Layout>
@@ -195,6 +257,16 @@ const adventures = [
     display: grid;
     grid-row: 1 / -1;
     grid-template-rows: subgrid;
+  }
+
+  .adventures {
+    margin-top: 4rem;
+  }
+
+  .adventure-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 1.25rem;
   }
 
   .column-title {
@@ -272,7 +344,8 @@ const adventures = [
     transition: stroke-dasharray var(--border-duration) linear;
   }
 
-  .adventures .entry-border {
+  .projects .entry-border,
+  .adventure-grid > article:nth-child(even) .entry-border {
     transform: scaleX(-1);
   }
 
@@ -348,7 +421,12 @@ const adventures = [
       gap: 1rem;
     }
 
-    .adventures .entry-border {
+    .adventure-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .projects .entry-border,
+    .adventure-grid > article:nth-child(even) .entry-border {
       transform: none;
     }
 

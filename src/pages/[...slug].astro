@@ -21,6 +21,12 @@ const { Content } = await render(post);
   title={`${post.data.title} | Bogdan Chadkin`}
   description={post.data.description}
 >
+  <header class="article-brand">
+    <a href="/" class="brand">
+      TrySound forked your repository
+    </a>
+  </header>
+
   <main>
     <header class="article-header">
       <div class="article-meta">
@@ -29,13 +35,11 @@ const { Content } = await render(post);
           style={`view-transition-name: ${post.id}-date;`}
           datetime={post.data.date.toISOString()}
         >
-          {
-            post.data.date.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })
-          }
+          {post.data.date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
         </time>
       </div>
       <h1
@@ -55,26 +59,38 @@ const { Content } = await render(post);
     <div class="article-content">
       <Content />
     </div>
-
-    <section class="cta-section">
-      <p class="cta-text">
-        Available for freelance, consulting, and full-time opportunities. I help
-        teams build fast, accessible user interfaces and scalable frontend
-        architecture.
-      </p>
-      <a href="/hire-me" class="cta-button">Get in Touch</a>
-    </section>
   </main>
 
   <footer class="footer">
-    <a href="/" class="footer-backlink">← Back to home</a>
+    <a href="/" class="footer-backlink">
+      Back to home
+    </a>
     <Socials />
   </footer>
 </Layout>
 
 <style>
-  .article {
-    color: var(--text-secondary);
+  .article-brand {
+    margin-bottom: 2.5rem;
+  }
+
+  .brand {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+    view-transition-name: name;
+  }
+
+  .brand:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 5px;
+  }
+
+  .footer {
+    border-top: none;
   }
 
   .article-header {
@@ -139,7 +155,7 @@ const { Content } = await render(post);
 
   .article-content :global(blockquote) {
     background: var(--bg-secondary);
-    border-left: 3px solid var(--accent);
+    border-left: 1px solid var(--accent);
     border-radius: 0 8px 8px 0;
     padding: 1rem 1.5rem 0.1rem;
     margin: 1.5rem 0;
@@ -193,7 +209,6 @@ const { Content } = await render(post);
   .article-content :global(a) {
     overflow-wrap: break-word;
   }
-
 
   @media (min-width: 640px) {
     .article-title {

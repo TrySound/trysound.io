@@ -106,15 +106,15 @@ const { Content } = await render(post);
     display: inline-block;
     text-decoration: none;
     view-transition-name: name;
+
+    &:focus-visible {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
   }
 
   [data-article-brand] {
     display: inline-block;
-  }
-
-  .brand:focus-visible {
-    outline: 1px solid var(--accent);
-    outline-offset: 5px;
   }
 
   .article-header {

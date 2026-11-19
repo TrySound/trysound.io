@@ -36,8 +36,19 @@ file, this guide or an agent prompt.
   `--bg-primary` on accent/accent-hover. Recheck these combinations when
   changing the palette.
 - Never use the decorative border color for informative text or as the only
-  focus indicator. Custom card focus outlines use the accent role.
+  focus indicator. Focus outlines use the accent role through the shared outline
+  variables.
 - Preserve small-text contrast; do not dim informative metadata with opacity.
+
+## Keyboard focus
+
+`--outline` and `--outline-offset` in [`src/styles.css`](../src/styles.css)
+define one site-wide focus appearance. `.link` and `.prose a` share a nested
+`&:focus-visible` rule alongside their shared link treatment. `.card`,
+scrollable `.prose pre` code blocks, the article `.brand`, and the Socials
+component's anchors each apply both variables in their own focus rule. There is
+no global focus override. Preserve each consumer's native semantics and keyboard
+reachability; new interactive patterns must opt in explicitly.
 
 ## Dimensions and typography
 

@@ -75,6 +75,9 @@
   --accent: #22c55e;
   --accent-hover: #16a34a;
   --border: #262626;
+
+  --outline: 2px solid var(--accent);
+  --outline-offset: 5px;
 }
 
 * {
@@ -142,6 +145,11 @@ body {
   &:hover {
     color: var(--accent);
     text-underline-offset: 8px;
+  }
+
+  &:focus-visible {
+    outline: var(--outline);
+    outline-offset: var(--outline-offset);
   }
 }
 
@@ -282,6 +290,11 @@ body {
     margin-bottom: 1.25rem;
     border: 1px solid var(--border);
 
+    &:focus-visible {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
+
     code {
       background: none;
       padding: 0;
@@ -384,8 +397,8 @@ body {
   }
 
   &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 5px;
+    outline: var(--outline);
+    outline-offset: var(--outline-offset);
   }
 }
 

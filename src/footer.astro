@@ -1,0 +1,32 @@
+---
+import Socials from "./socials.astro";
+---
+
+<footer>
+  <a href="/rss.xml" class="footer-backlink">
+    RSS feed
+  </a>
+  <Socials />
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 5rem;
+    padding-top: 2rem;
+  }
+
+  @media (max-width: 700px) {
+    footer {
+      margin-top: 3rem;
+    }
+  }
+
+  @media print {
+    footer {
+      display: none;
+    }
+  }
+</style>

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layout.astro";
-import Socials from "../socials.astro";
+import Footer from "../footer.astro";
 
 const posts = await getCollection("blog");
 const sortedPosts = posts
@@ -180,12 +180,9 @@ const projects = [
     </section>
   </main>
 
-  <footer class="home-footer">
-    <a href="/rss.xml" class="footer-backlink">
-      RSS feed
-    </a>
-    <Socials />
-  </footer>
+  <div class="footer-container">
+    <Footer />
+  </div>
 </Layout>
 
 <script>
@@ -395,12 +392,8 @@ const projects = [
     text-wrap: pretty;
   }
 
-  .home-footer {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 5rem;
-    padding: 2rem clamp(1.25rem, 2vw, 2rem) 0;
+  .footer-container {
+    padding-inline: clamp(1.25rem, 2vw, 2rem);
   }
 
   @media (max-width: 700px) {
@@ -428,10 +421,6 @@ const projects = [
     .projects .entry-border,
     .adventure-grid > article:nth-child(even) .entry-border {
       transform: none;
-    }
-
-    .home-footer {
-      margin-top: 3rem;
     }
   }
 

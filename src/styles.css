@@ -52,7 +52,7 @@ h6 {
 }
 
 body.full-width {
-  max-width: none;
+  max-width: 100rem;
   padding: 2rem clamp(1rem, 4vw, 5rem);
 }
 

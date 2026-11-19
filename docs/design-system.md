@@ -46,6 +46,25 @@ file, this guide or an agent prompt.
   variables.
 - Preserve small-text contrast; do not dim informative metadata with opacity.
 
+## Site icons
+
+[`public/favicon.svg`](../public/favicon.svg) is the favicon source: an outlined
+Rajdhani Medium “T” from the self-hosted font, using the accent on the primary
+surface. Keep its colors aligned with `src/styles.css`; the fixed dark tile
+works with both light and dark browser chrome. This is separate from
+`public/icon.svg`, the social-icon sprite.
+
+[`src/layout.astro`](../src/layout.astro) links the SVG, a root-level 32×32
+`favicon.ico` fallback, and a 180×180 `apple-touch-icon.png`. Following the
+[Evil Martians favicon guide](https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs),
+there is no manifest or Android app-icon set: this site is not a PWA.
+
+When changing the SVG, regenerate the raster assets: render at 32×32 and export
+a 32-bit ICO; for Apple, render at 140×140, center on a 180×180 primary-surface
+canvas (20px padding), and export an opaque PNG. Check legibility at 16×16 and
+32×32, plus the touch icon. The outlined glyph needs no font request; its font
+license lives in `src/fonts/Rajdhani-OFL.txt`.
+
 ## Keyboard focus
 
 `--outline` and `--outline-offset` in [`src/styles.css`](../src/styles.css)

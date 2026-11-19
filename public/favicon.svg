@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Rajdhani Medium T, outlined from src/fonts/rajdhani-500-latin.woff2 (SIL OFL 1.1). -->
+  <rect width="32" height="32" rx="6" fill="#0a0a0a" />
+  <path
+    fill="#22c55e"
+    transform="translate(8.031 28) scale(.037325 -.037325)"
+    d="M236 0H191Q177 0 177 14V570Q177 579 167 579H31Q16 579 16 593V629Q16 643 31 643H396Q411 643 411 629V593Q411 579 396 579H260Q250 579 250 570V14Q250 0 236 0Z"
+  />
+</svg>

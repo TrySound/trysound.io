@@ -19,7 +19,7 @@ const { Content } = await render(post);
 ---
 
 <Layout
-  articlePage
+  mode="article"
   title={`${post.data.title} — TrySound`}
   description={post.data.description}
 >
@@ -38,7 +38,7 @@ const { Content } = await render(post);
     <header class="article-header">
       <div class="article-meta">
         <time
-          class="article-date"
+          class="metadata"
           style={`view-transition-name: ${post.id}-date;`}
           datetime={post.data.date.toISOString()}
         >
@@ -133,14 +133,6 @@ const { Content } = await render(post);
     gap: 1rem;
     align-items: center;
     margin-bottom: 1rem;
-  }
-
-  .article-date {
-    font-family: var(--font-heading);
-    font-weight: 500;
-    color: var(--text-muted);
-    font-size: 1rem;
-    text-transform: lowercase;
   }
 
   .article-title {

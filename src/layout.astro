@@ -2,8 +2,17 @@
 import "./styles.css";
 import { siteTitle, siteDescription } from "./site";
 
-const title = Astro.props.title || siteTitle;
-const description = Astro.props.description || siteDescription;
+interface Props {
+  title?: string;
+  description?: string;
+  mode?: "default" | "article" | "wide";
+}
+
+const {
+  title = siteTitle,
+  description = siteDescription,
+  mode = "default",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -62,8 +71,8 @@ const description = Astro.props.description || siteDescription;
   </head>
   <body
     class:list={{
-      "full-width": Astro.props.fullWidth,
-      "article-page": Astro.props.articlePage,
+      "full-width": mode === "wide",
+      "article-page": mode === "article",
     }}
   >
     <slot />

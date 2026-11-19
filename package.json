@@ -15,6 +15,8 @@
     "check": "astro check",
     "dev": "astro dev",
     "build": "astro build && sequoia inject",
+    "build:static": "astro build",
+    "format:check": "prettier --check src README.md AGENTS.md docs",
     "preview": "astro preview",
     "publish-articles": "sequoia publish"
   },

@@ -77,7 +77,7 @@ import Socials from "../socials.astro";
             href="https://github.com/TrySound/engramma"
           >
             <h3 class="card-title">Engramma (author)</h3>
-            <span class="card-subtitle">2025–present</span>
+            <span class="card-subtitle metadata">2025–present</span>
             <p class="card-description">
               Web application for generating style guides and managing design
               tokens.
@@ -91,7 +91,7 @@ import Socials from "../socials.astro";
             href="https://github.com/svg/svgo"
           >
             <h3 class="card-title">SVGO (maintainer)</h3>
-            <span class="card-subtitle">2021–2023</span>
+            <span class="card-subtitle metadata">2021–2023</span>
             <p class="card-description">
               Popular SVG optimizer. Rebuilt plugin system, reduced package size
               by 40%, improved stability.
@@ -105,7 +105,7 @@ import Socials from "../socials.astro";
             href="https://github.com/rollup/rollup"
           >
             <h3 class="card-title">Rollup (contributor)</h3>
-            <span class="card-subtitle">2015–2018</span>
+            <span class="card-subtitle metadata">2015–2018</span>
             <p class="card-description">
               Next-generation ES module bundler. Implemented persistent caching
               (60% faster rebuilds), improved tree-shaking, contributed into
@@ -120,7 +120,7 @@ import Socials from "../socials.astro";
             href="https://github.com/postcss/postcss"
           >
             <h3 class="card-title">PostCSS ecosystem</h3>
-            <span class="card-subtitle">2015–2016</span>
+            <span class="card-subtitle metadata">2015–2016</span>
             <p class="card-description">
               A tool for transforming CSS with JavaScript CSS used by thousands
               projects. Core contributor, co-authored cssnano minifier, created
@@ -172,7 +172,7 @@ import Socials from "../socials.astro";
             <a href="https://webstudio.is">Webstudio</a>
           </h3>
           <span class="role">Software Engineer</span>
-          <span class="date">2022–2026</span>
+          <span class="metadata">2022–2026</span>
         </div>
         <p class="company-tagline">
           Open-source visual website builder with full CSS control
@@ -205,7 +205,7 @@ import Socials from "../socials.astro";
             <a href="https://realadvisor.ch/en">RealAdvisor</a>
           </h3>
           <span class="role">Software Engineer</span>
-          <span class="date">2017–2022</span>
+          <span class="metadata">2017–2022</span>
         </div>
         <p class="company-tagline">
           Swiss real-estate platform (property valuations, agent matching)
@@ -237,7 +237,7 @@ import Socials from "../socials.astro";
         <div class="experience-header">
           <h3 class="company">Siemens</h3>
           <span class="role">Software Engineer</span>
-          <span class="date">2015–2017</span>
+          <span class="metadata">2015–2017</span>
         </div>
         <p class="company-tagline">Industrial monitoring systems</p>
         <ul class="experience-list">
@@ -260,7 +260,7 @@ import Socials from "../socials.astro";
         <div class="experience-header">
           <h3 class="company">Freelance</h3>
           <span class="role">Frontend Developer</span>
-          <span class="date">2012–2015</span>
+          <span class="metadata">2012–2015</span>
         </div>
         <ul class="experience-list">
           <li>
@@ -349,7 +349,7 @@ import Socials from "../socials.astro";
   .opensource-grid {
     display: grid;
     gap: 1.25rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   }
 
   .expertise-grid {
@@ -386,14 +386,6 @@ import Socials from "../socials.astro";
     color: var(--text-secondary);
   }
 
-  .date {
-    font-family: var(--font-heading);
-    font-weight: 500;
-    color: var(--text-muted);
-    font-size: 1rem;
-    text-transform: lowercase;
-  }
-
   .company-tagline {
     color: var(--text-muted);
     font-size: 1rem;
@@ -409,12 +401,6 @@ import Socials from "../socials.astro";
   .experience-list li {
     margin-bottom: 0.5rem;
     line-height: 1.6;
-  }
-
-  .card-proof {
-    color: var(--text-muted);
-    font-size: 1rem;
-    margin-top: 0.5rem;
   }
 
   strong {
@@ -438,12 +424,10 @@ import Socials from "../socials.astro";
     .header {
       margin-bottom: 1.5rem;
       padding-bottom: 1rem;
-      border-bottom: 1px solid #cccccc;
     }
 
     .name {
       font-size: 2rem;
-      color: #000000;
     }
 
     .section {
@@ -451,17 +435,8 @@ import Socials from "../socials.astro";
     }
 
     .section-title {
-      color: #000000;
-      border-bottom: 2px solid #000000;
+      border-bottom: 2px solid var(--accent);
       margin-bottom: 1rem;
-    }
-
-    .summary {
-      color: #333333;
-    }
-
-    .bestfor-list {
-      color: #333333;
     }
 
     .opensource-grid {
@@ -486,20 +461,7 @@ import Socials from "../socials.astro";
     }
 
     .card-title {
-      color: #000000;
       font-size: 1.1rem;
-    }
-
-    .card-subtitle {
-      color: #666666;
-    }
-
-    .card-description {
-      color: #333333;
-    }
-
-    .card-proof {
-      color: #666666;
     }
 
     .expertise-grid {
@@ -510,32 +472,8 @@ import Socials from "../socials.astro";
     .experience-item {
       margin-bottom: 1.5rem;
       padding-bottom: 1rem;
-      border-bottom: 1px solid #cccccc;
+      border-bottom: 1px solid var(--border);
       break-inside: avoid;
-    }
-
-    .company {
-      color: #000000;
-    }
-
-    .role {
-      color: #333333;
-    }
-
-    .date {
-      color: #666666;
-    }
-
-    .company-tagline {
-      color: #666666;
-    }
-
-    .experience-list {
-      color: #333333;
-    }
-
-    strong {
-      color: #000000;
     }
 
     .footer {

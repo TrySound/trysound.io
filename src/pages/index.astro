@@ -67,7 +67,7 @@ const projects = [
 ];
 ---
 
-<Layout fullWidth>
+<Layout mode="wide">
   <main>
     <header class="hero">
       <h1 class="title" aria-label="TrySound forked your repository">
@@ -81,7 +81,7 @@ const projects = [
       class="columns"
       style={`--entry-count: ${Math.max(sortedPosts.length, projects.length)};`}
     >
-      <section class="posts" aria-labelledby="posts-title">
+      <section aria-labelledby="posts-title">
         <h2 id="posts-title" class="column-title">
           posts
         </h2>
@@ -93,7 +93,7 @@ const projects = [
                   <path pathLength="100" />
                 </svg>
                 <time
-                  class="entry-meta"
+                  class="entry-meta metadata"
                   style={`view-transition-name: ${post.id}-date;`}
                   datetime={post.data.date.toISOString()}
                 >
@@ -137,7 +137,7 @@ const projects = [
                 <svg class="entry-border" aria-hidden="true">
                   <path pathLength="100" />
                 </svg>
-                <span class="entry-meta">
+                <span class="entry-meta metadata">
                   {project.role} · {project.period}
                 </span>
                 <h3 class="entry-title">{project.name}</h3>
@@ -165,7 +165,7 @@ const projects = [
               <svg class="entry-border" aria-hidden="true">
                 <path pathLength="100" />
               </svg>
-              <span class="entry-meta">
+              <span class="entry-meta metadata">
                 {adventure.role} · {adventure.period}
               </span>
               <h3 class="entry-title">{adventure.name}</h3>
@@ -367,12 +367,7 @@ const projects = [
   }
 
   .entry-meta {
-    color: var(--text-muted);
-    font-family: var(--font-heading);
-    font-weight: 500;
-    font-size: 1rem;
     letter-spacing: 0.02em;
-    text-transform: lowercase;
   }
 
   .entry-title {

@@ -7,8 +7,10 @@ not a generic component library.
 ## Find and reuse
 
 - Shell, document metadata and typed modes: `src/layout.astro`.
-- Semantic palette, metadata, shared backlink and print remap: `src/styles.css`.
-- Font: `src/fonts.css`; prose/entry styles are scoped to their page templates.
+- Semantic palette, typography tokens/classes, shared prose and print remap:
+  `src/styles.css`.
+- Font asset: `src/fonts.css`; entry layout and effects stay in
+  `src/pages/index.astro`.
 - Shared footer/social content: `src/footer.astro`, `src/socials.astro`.
 - Content contract: `src/content.config.ts`; pages: `src/pages/`.
 

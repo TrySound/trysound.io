@@ -24,7 +24,11 @@ const { Content } = await render(post);
   description={post.data.description}
 >
   <header class="article-brand">
-    <a href="/" class="brand" aria-label="TrySound forked your repository">
+    <a
+      href="/"
+      class="brand display-sm"
+      aria-label="TrySound forked your repository"
+    >
       <span data-article-brand aria-hidden="true">
         TrySound forked your repository
       </span>
@@ -50,14 +54,14 @@ const { Content } = await render(post);
         </time>
       </div>
       <h1
-        class="article-title"
+        class="article-title heading-lg"
         style={`view-transition-name: ${post.id}-title;`}
       >
         {post.data.title}
       </h1>
     </header>
 
-    <div class="article-content">
+    <div class="prose">
       <Content />
     </div>
   </main>
@@ -106,11 +110,6 @@ const { Content } = await render(post);
 
   .brand {
     display: inline-block;
-    font-family: var(--heading-md-font);
-    font-size: var(--heading-md-size);
-    font-weight: var(--heading-md-weight);
-    line-height: var(--heading-md-leading);
-    letter-spacing: var(--heading-md-tracking);
     text-decoration: none;
     view-transition-name: name;
   }
@@ -137,111 +136,6 @@ const { Content } = await render(post);
   }
 
   .article-title {
-    font-family: var(--heading-lg-font);
-    font-size: var(--heading-lg-size);
-    font-weight: var(--heading-lg-weight);
-    line-height: var(--heading-lg-leading);
-    letter-spacing: var(--heading-lg-tracking);
-    color: var(--text-primary);
     margin-bottom: 1rem;
-  }
-
-  .article-content {
-    font-family: var(--prose-font);
-    font-size: var(--prose-size);
-    font-weight: var(--prose-weight);
-    line-height: var(--prose-leading);
-    letter-spacing: var(--prose-tracking);
-    text-wrap: pretty;
-  }
-
-  .article-content :global(h2) {
-    font-family: var(--heading-md-font);
-    font-size: var(--heading-md-size);
-    font-weight: var(--heading-md-weight);
-    line-height: var(--heading-md-leading);
-    letter-spacing: var(--heading-md-tracking);
-    color: var(--text-primary);
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .article-content :global(h3) {
-    font-family: var(--heading-sm-font);
-    font-size: var(--heading-sm-size);
-    font-weight: var(--heading-sm-weight);
-    line-height: var(--heading-sm-leading);
-    letter-spacing: var(--heading-sm-tracking);
-    color: var(--text-primary);
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .article-content :global(p) {
-    margin-bottom: 1.25rem;
-  }
-
-  .article-content :global(hr) {
-    border: 0;
-    border-top: 1px solid var(--accent);
-    margin-block: 2.5rem;
-  }
-
-  .article-content :global(blockquote) {
-    border-left: 1px solid var(--accent);
-    padding: 1rem 1.5rem 0.1rem;
-    margin: 1.5rem 0;
-    color: var(--text-muted);
-  }
-
-  .article-content :global(ul),
-  .article-content :global(ol) {
-    margin-bottom: 1.25rem;
-    padding-left: 1.5rem;
-  }
-
-  .article-content :global(li) {
-    margin-bottom: 0.5rem;
-  }
-
-  .article-content :global(strong) {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
-  .article-content :global(code) {
-    background: var(--bg-secondary);
-    color: var(--accent);
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-family: var(--code-font);
-    font-size: var(--code-size);
-    font-weight: var(--code-weight);
-    line-height: var(--code-leading);
-    letter-spacing: var(--code-tracking);
-  }
-
-  .article-content :global(pre) {
-    background: var(--bg-secondary);
-    padding: 1rem;
-    border-radius: 8px;
-    overflow-x: auto;
-    margin-bottom: 1.25rem;
-    border: 1px solid var(--border);
-  }
-
-  .article-content :global(pre code) {
-    background: none;
-    padding: 0;
-    color: var(--text-secondary);
-  }
-
-  .article-content :global(img) {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .article-content :global(a) {
-    overflow-wrap: break-word;
   }
 </style>

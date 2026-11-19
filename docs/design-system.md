@@ -7,16 +7,16 @@ page; they are not reusable system components.
 
 ## Find the source
 
-| Decision / pattern | Canonical source                                                                 | Anatomy and permitted variation                                                                                                                                                                       |
-| ------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Shell              | [`src/layout.astro`](../src/layout.astro), [`src/styles.css`](../src/styles.css) | Document metadata, global stylesheet and slot. Typed `mode`: `default` (800px), `article` (60rem), `wide` (100rem). Modes are mutually exclusive; optional `title`/`description`.                     |
-| Fonts and type     | [`src/fonts.css`](../src/fonts.css), global CSS, page styles                     | Shared family primitives and semantic typography variables in global CSS; page rules consume roles. No downloaded body font.                                                                          |
-| Metadata           | Global `.metadata`                                                               | Muted color, shared metadata typography, lowercase. Use real `<time datetime="…">` elements for dates; the class provides typography, not date semantics.                                             |
-| Linked entry       | [`src/pages/index.astro`](../src/pages/index.astro)                              | Article wrapper, full-entry anchor, decorative border SVG, optional metadata, heading, optional summary. Home-local recipe; posts, projects and adventures keep their content/transition differences. |
-| Prose              | [`src/pages/[...slug].astro`](../src/pages/[...slug].astro)                      | Content wrapper around rendered Markdown; scoped headings, lists, quotes, code and responsive images.                                                                                                 |
-| Footer             | [`src/footer.astro`](../src/footer.astro)                                        | Shared RSS link and socials for home/article pages.                                                                                                                                                   |
-| Socials            | [`src/socials.astro`](../src/socials.astro)                                      | Native nav and named anchors containing sprite SVGs; share the content rather than reproducing icon links.                                                                                            |
-| Motion and print   | Page scripts, Socials, global and page print CSS                                 | Preserve intentional timing/play-mode differences. Central palette remap; page rules handle print layout, not a parallel color palette.                                                               |
+| Decision / pattern | Canonical source                                                                                   | Anatomy and permitted variation                                                                                                                                                                       |
+| ------------------ | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Shell              | [`src/layout.astro`](../src/layout.astro), [`src/styles.css`](../src/styles.css)                   | Document metadata, global stylesheet and slot. Typed `mode`: `default` (800px), `article` (60rem), `wide` (100rem). Modes are mutually exclusive; optional `title`/`description`.                     |
+| Fonts and type     | [`src/fonts.css`](../src/fonts.css), global CSS, page styles                                       | Shared family primitives, semantic typography variables, and text-treatment classes in global CSS. No downloaded body font.                                                                           |
+| Metadata           | Global `.metadata`                                                                                 | Muted color, shared metadata typography, lowercase. Use real `<time datetime="…">` elements for dates; the class provides typography, not date semantics.                                             |
+| Linked entry       | [`src/pages/index.astro`](../src/pages/index.astro)                                                | Article wrapper, full-entry anchor, decorative border SVG, optional metadata, heading, optional summary. Home-local recipe; posts, projects and adventures keep their content/transition differences. |
+| Prose              | [`src/styles.css`](../src/styles.css), [`src/pages/[...slug].astro`](../src/pages/[...slug].astro) | Shared `.prose` wrapper around native Markdown; headings, lists, quotes, code, links and responsive images.                                                                                           |
+| Footer             | [`src/footer.astro`](../src/footer.astro)                                                          | Shared RSS link and socials for home/article pages.                                                                                                                                                   |
+| Socials            | [`src/socials.astro`](../src/socials.astro)                                                        | Native nav and named anchors containing sprite SVGs; share the content rather than reproducing icon links.                                                                                            |
+| Motion and print   | Page scripts, Socials, global and page print CSS                                                   | Preserve intentional timing/play-mode differences. Central palette remap; page rules handle print layout, not a parallel color palette.                                                               |
 
 All examples below use real source contracts. They are documentation, not a
 production component gallery or additional public route.
@@ -48,34 +48,58 @@ Typography has two layers, both defined in
 `--font-body`, `--font-code`) and semantic roles. Each role exposes `-font`,
 `-size`, `-weight`, `-leading`, and `-tracking`. Only families are aliased; the
 other values are declared directly on each role. Keep these values central,
-without page-local typography overrides or a second numeric scale. Colors, text
-transformation, decoration, and layout remain with consuming classes. All native
-headings (`h1`–`h6`) use global balanced wrapping; prose and descriptions keep
-contextual wrapping. Spacing and radius values stay local where clearer.
+without page-local typography overrides or a second numeric scale. Shared text
+classes consume the roles and add color, wrapping, transformation, and
+decoration. Page-local classes retain layout, focus treatments, view
+transitions, and behavior. Heading classes and native headings within `.prose`
+use balanced wrapping; prose and descriptions use pretty wrapping. Spacing and
+radius values stay local except within the shared prose recipe.
 
-| Role             | Consumers                                                        |
-| ---------------- | ---------------------------------------------------------------- |
-| `--heading-xl-*` | Homepage hero `.title`                                           |
-| `--heading-lg-*` | Article `.article-title`                                         |
-| `--heading-md-*` | Homepage `.entry-title`, article `.brand`, prose `h2`            |
-| `--heading-sm-*` | Prose `h3`; global fallback for otherwise unstyled headings      |
-| `--label-*`      | Homepage `.column-title` section labels                          |
-| `--metadata-*`   | Shared `.metadata` dates, roles, periods, and `.footer-backlink` |
-| `--body-*`       | Body, inherited by entry descriptions                            |
-| `--prose-*`      | Article content, inherited by paragraphs, lists, and blockquotes |
-| `--code-*`       | Article inline and fenced code                                   |
+| Class / selector           | Token role       | Treatment and current use                                     |
+| -------------------------- | ---------------- | ------------------------------------------------------------- |
+| `.display-lg`              | `--heading-xl-*` | Accent, balanced, glow; homepage hero                         |
+| `.display-sm`              | `--heading-md-*` | Accent, balanced; article brand                               |
+| `.heading-lg`              | `--heading-lg-*` | Primary, balanced; article title                              |
+| `.heading-md`, `.prose h2` | `--heading-md-*` | Primary, balanced; card titles and prose sections             |
+| `.heading-sm`, `.prose h3` | `--heading-sm-*` | Primary, balanced; prose subsections                          |
+| `.label`                   | `--label-*`      | Secondary, balanced; homepage section labels                  |
+| `.metadata`                | `--metadata-*`   | Muted, lowercase; dates, roles, periods                       |
+| `.link`                    | `--metadata-*`   | Inherited color, lowercase, accent on hover; RSS              |
+| `body`, `.text-body`       | `--body-*`       | Body default; secondary, pretty descriptions via `.text-body` |
+| `.prose`                   | `--prose-*`      | Secondary, pretty; article paragraphs, lists, quotes          |
+| `.prose code`              | `--code-*`       | Inline and fenced code                                        |
+
+Typography targets classes or native elements within `.prose`, with `body` as
+the global base exception. Prose headings other than `h2` use the small heading
+recipe. Visual class names do not dictate HTML heading levels.
 
 All heading sizes and prose size are fluid; other roles are fixed or relative.
 Heading size roles are visual, not HTML heading levels: semantic level follows
 page structure. The home hero uses accent; other heading colors stay contextual.
 Metadata is lowercase and uses consistent tracking across pages. Prose uses
 secondary text; blockquotes use muted text with an accent border and no
-background. Strong text retains its local emphasis weight and primary color;
-italics remain native emphasis. Code has an explicit normal weight and
-prose-compatible leading; CSS-wide `inherit` is not stored in root custom
-properties, where it would inherit the custom property itself rather than the
-consuming font property. Syntax highlighting remains responsible for code-token
-colors.
+background. Strong text retains its emphasis weight and primary color; italics
+remain native emphasis. Code has an explicit normal weight and prose-compatible
+leading; CSS-wide `inherit` is not stored in root custom properties, where it
+would inherit the custom property itself rather than the consuming font
+property. Syntax highlighting remains responsible for code-token colors.
+
+### Shared prose recipe
+
+Apply `.prose` to a content wrapper; native Markdown descendants need no
+classes. Its `h2` and `h3` share declaration blocks with `.heading-md` and
+`.heading-sm`; prose rules add their existing section margins. Paragraphs,
+lists, and list items retain their spacing; blockquotes retain their border and
+padding. Strong and emphasis preserve their semantics, code keeps inline/fenced
+treatments, rules use the accent border, and images remain responsive.
+
+`.link` and `.prose a` share inherited color, underline, URL wrapping,
+transition timing, accent on hover, and reduced-motion handling. Their underline
+offset transitions from 6px to 8px on hover. Only `.link` applies metadata font
+tokens and lowercase; prose links inherit their surrounding typography and
+casing. Native keyboard focus remains visible. Print continues to remap semantic
+colors and append external URLs. No Markdown class injection or article-only
+stylesheet is needed.
 
 ## Real composition examples
 
@@ -87,11 +111,9 @@ colors.
     <svg class="entry-border" aria-hidden="true">
       <path pathLength="100"></path>
     </svg>
-    <time class="entry-meta metadata" datetime="2025-01-01"
-      >January 1, 2025</time
-    >
-    <h3 class="entry-title">Building a design-token app</h3>
-    <p class="entry-description">A short summary.</p>
+    <time class="metadata" datetime="2025-01-01">January 1, 2025</time>
+    <h3 class="heading-md">Building a design-token app</h3>
+    <p class="entry-description text-body">A short summary.</p>
   </a>
 </article>
 ```
@@ -114,9 +136,10 @@ import Footer from "../footer.astro";
 
 <Layout mode="article" title="An article — TrySound">
   <main>
-    <h1>An article</h1>
-    <!-- The production article template owns the scoped prose wrapper. -->
-    <p>Page content stays semantic.</p>
+    <h1 class="heading-lg">An article</h1>
+    <div class="prose">
+      <p>Page content stays semantic.</p>
+    </div>
   </main>
   <Footer />
 </Layout>
@@ -124,9 +147,9 @@ import Footer from "../footer.astro";
 
 Use `Socials` directly when composing a different footer. Keep link accessible
 names and the nav's natural document order; do not use icon shape alone as a
-name. Import it from `../socials.astro` in that alternative composition.
-Markdown/prose must render through the actual article template to receive its
-scoped typography.
+name. Import it from `../socials.astro` in that alternative composition. Wrap
+rendered Markdown in `.prose` to receive the shared content recipe. The article
+template uses this same global class.
 
 ## Responsive, motion and accessibility contracts
 

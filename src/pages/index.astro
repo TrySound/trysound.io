@@ -70,7 +70,7 @@ const projects = [
 <Layout mode="wide">
   <main>
     <header class="hero">
-      <h1 class="title" aria-label="TrySound forked your repository">
+      <h1 class="title display-lg" aria-label="TrySound forked your repository">
         <span data-index-hero-title aria-hidden="true">
           TrySound forked your repository
         </span>
@@ -82,7 +82,7 @@ const projects = [
       style={`--entry-count: ${Math.max(sortedPosts.length, projects.length)};`}
     >
       <section aria-labelledby="posts-title">
-        <h2 id="posts-title" class="column-title">
+        <h2 id="posts-title" class="column-title label">
           posts
         </h2>
         <div class="entries">
@@ -93,7 +93,7 @@ const projects = [
                   <path pathLength="100" />
                 </svg>
                 <time
-                  class="entry-meta metadata"
+                  class="metadata"
                   style={`view-transition-name: ${post.id}-date;`}
                   datetime={post.data.date.toISOString()}
                 >
@@ -104,13 +104,13 @@ const projects = [
                   })}
                 </time>
                 <h3
-                  class="entry-title"
+                  class="heading-md"
                   style={`view-transition-name: ${post.id}-title;`}
                 >
                   {post.data.title}
                 </h3>
                 <p
-                  class="entry-description"
+                  class="entry-description text-body"
                   style={`view-transition-name: ${post.id}-description;`}
                 >
                   {post.data.description}
@@ -122,7 +122,7 @@ const projects = [
       </section>
 
       <section class="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title" class="column-title">
+        <h2 id="projects-title" class="column-title label">
           my projects
         </h2>
         <div class="entries">
@@ -137,11 +137,11 @@ const projects = [
                 <svg class="entry-border" aria-hidden="true">
                   <path pathLength="100" />
                 </svg>
-                <span class="entry-meta metadata">
+                <span class="metadata">
                   {project.role} · {project.period}
                 </span>
-                <h3 class="entry-title">{project.name}</h3>
-                <p class="entry-description">{project.description}</p>
+                <h3 class="heading-md">{project.name}</h3>
+                <p class="entry-description text-body">{project.description}</p>
               </a>
             </article>
           ))}
@@ -150,7 +150,7 @@ const projects = [
     </div>
 
     <section class="adventures" aria-labelledby="adventures-title">
-      <h2 id="adventures-title" class="column-title">
+      <h2 id="adventures-title" class="column-title label">
         open source adventures
       </h2>
       <div class="adventure-grid">
@@ -165,10 +165,10 @@ const projects = [
               <svg class="entry-border" aria-hidden="true">
                 <path pathLength="100" />
               </svg>
-              <span class="entry-meta metadata">
+              <span class="metadata">
                 {adventure.role} · {adventure.period}
               </span>
-              <h3 class="entry-title">{adventure.name}</h3>
+              <h3 class="heading-md">{adventure.name}</h3>
             </a>
           </article>
         ))}
@@ -227,13 +227,6 @@ const projects = [
 
   .title {
     display: inline-block;
-    color: var(--accent);
-    font-family: var(--heading-xl-font);
-    font-size: var(--heading-xl-size);
-    font-weight: var(--heading-xl-weight);
-    line-height: var(--heading-xl-leading);
-    letter-spacing: var(--heading-xl-tracking);
-    text-shadow: 0 0 40px rgb(34 197 94 / 15%);
     view-transition-name: name;
   }
 
@@ -265,12 +258,6 @@ const projects = [
   }
 
   .column-title {
-    color: var(--text-secondary);
-    font-family: var(--label-font);
-    font-size: var(--label-size);
-    font-weight: var(--label-weight);
-    line-height: var(--label-leading);
-    letter-spacing: var(--label-tracking);
     margin-bottom: 1.75rem;
     padding-inline: clamp(1.25rem, 2vw, 2rem);
   }
@@ -371,18 +358,8 @@ const projects = [
     outline-offset: 5px;
   }
 
-  .entry-title {
-    color: var(--text-primary);
-    font-family: var(--heading-md-font);
-    font-size: var(--heading-md-size);
-    font-weight: var(--heading-md-weight);
-    line-height: var(--heading-md-leading);
-    letter-spacing: var(--heading-md-tracking);
-  }
-
   .entry-description {
     max-width: 60ch;
-    text-wrap: pretty;
   }
 
   .footer-container {

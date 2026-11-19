@@ -90,7 +90,7 @@ const projects = [
             <article>
               <a href={`/${post.id}/`} class="entry">
                 <svg class="entry-border" aria-hidden="true">
-                  <path pathLength="100" />
+                  <rect width="100%" height="100%" pathLength="100" />
                 </svg>
                 <time
                   class="metadata"
@@ -135,7 +135,7 @@ const projects = [
                 rel="noopener noreferrer"
               >
                 <svg class="entry-border" aria-hidden="true">
-                  <path pathLength="100" />
+                  <rect width="100%" height="100%" pathLength="100" />
                 </svg>
                 <span class="metadata">
                   {project.role} · {project.period}
@@ -163,7 +163,7 @@ const projects = [
               rel="noopener noreferrer"
             >
               <svg class="entry-border" aria-hidden="true">
-                <path pathLength="100" />
+                <rect width="100%" height="100%" pathLength="100" />
               </svg>
               <span class="metadata">
                 {adventure.role} · {adventure.period}
@@ -184,30 +184,6 @@ const projects = [
 <script>
   import { PowerGlitch } from "powerglitch";
 
-  // Use real pixel geometry: stretching a viewBox distorts dash lengths.
-  const borderObserver = new ResizeObserver((entries) => {
-    for (const {
-      target,
-      contentRect: { width, height },
-    } of entries) {
-      const cap = Math.min(24, width / 2);
-      target
-        .querySelector("path")!
-        .setAttribute(
-          "d",
-          `M ${width - cap} 0 H ${width} V ${height} H 0 V 0 Z`,
-        );
-      const visible = ((height + 2 * cap) / (2 * (width + height))) * 100;
-      (target as SVGSVGElement).style.setProperty(
-        "--border-dashes",
-        `${visible} ${100 - visible}`,
-      );
-    }
-  });
-  document.querySelectorAll(".entry-border").forEach((border) => {
-    borderObserver.observe(border);
-  });
-
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     PowerGlitch.glitch("[data-index-hero-title]", {
       playMode: "always",
@@ -220,6 +196,24 @@ const projects = [
 </script>
 
 <style>
+  @property --entry-border-visible {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 100;
+  }
+
+  @property --entry-border-gap {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+  }
+
+  @property --entry-border-offset {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+  }
+
   .hero {
     padding-block: clamp(3rem, 8vw, 7rem) clamp(4rem, 7vw, 6rem);
     text-align: center;
@@ -322,11 +316,44 @@ const projects = [
     transition:
       opacity var(--border-duration) ease,
       filter var(--border-duration) ease;
+
+    rect {
+      transition: stroke-dasharray var(--border-duration) linear;
+    }
   }
 
-  .entry-border path {
-    stroke-dasharray: var(--border-dashes);
-    transition: stroke-dasharray var(--border-duration) linear;
+  /* tan(atan2(a, b)) computes a/b without newer typed CSS division.
+   * Registered numbers keep calc() out of SVG dash properties for Firefox. */
+  @supports (opacity: calc(tan(atan2(1px, 1px)))) and (container-type: size) {
+    .entry-border {
+      container-type: size;
+
+      rect {
+        --entry-border-cap: min(48px, 50cqw);
+        --entry-border-perimeter: calc(2 * (100cqw + 100cqh));
+        --entry-border-visible: calc(
+          100 *
+            tan(
+              atan2(
+                100cqh + 2 * var(--entry-border-cap),
+                var(--entry-border-perimeter)
+              )
+            )
+        );
+        --entry-border-gap: calc(100 - var(--entry-border-visible));
+        --entry-border-offset: calc(
+          -100 *
+            tan(
+              atan2(
+                100cqw - var(--entry-border-cap),
+                var(--entry-border-perimeter)
+              )
+            )
+        );
+        stroke-dasharray: var(--entry-border-visible) var(--entry-border-gap);
+        stroke-dashoffset: var(--entry-border-offset);
+      }
+    }
   }
 
   .projects .entry-border,
@@ -349,7 +376,7 @@ const projects = [
     filter: drop-shadow(0 0 5px rgb(34 197 94 / 40%));
   }
 
-  .entry:is(:hover, :focus-visible) .entry-border path {
+  .entry:is(:hover, :focus-visible) .entry-border rect {
     stroke-dasharray: 100 0;
   }
 
@@ -400,7 +427,7 @@ const projects = [
     .entry::before,
     .entry:is(:hover, :focus-visible)::before,
     .entry-border,
-    .entry-border path {
+    .entry-border rect {
       transition: none;
     }
   }

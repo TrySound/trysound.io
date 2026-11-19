@@ -109,7 +109,7 @@ stylesheet is needed.
 <article>
   <a href="/building-design-tokens-app/" class="entry">
     <svg class="entry-border" aria-hidden="true">
-      <path pathLength="100"></path>
+      <rect width="100%" height="100%" pathLength="100"></rect>
     </svg>
     <time class="metadata" datetime="2025-01-01">January 1, 2025</time>
     <h3 class="heading-md">Building a design-token app</h3>
@@ -119,12 +119,19 @@ stylesheet is needed.
 ```
 
 Example date/copy above are illustrative, not content to publish. `.entry`
-styles and its ResizeObserver are scoped to `index.astro`; copying this markup
-to another page alone does **not** make the recipe available there. If a second
-page truly needs it, extract markup/styles/behavior together with a right-sized
-typed contract and before/after screenshots. Until then, keep the three simple
-home render paths explicit rather than adding a configuration-heavy component.
-Never nest another link, button or form control inside a full-entry link.
+styles are scoped to `index.astro`; copying this markup to another page alone
+does **not** make the recipe available there. The SVG rect uses size-container
+units and `tan(atan2(a, b))` ratios to preserve fixed-length tips and the
+perimeter-draw transition without JavaScript or newer typed CSS division.
+Numeric `@property` registrations resolve both dash lengths and the offset
+before passing them to SVG: Firefox does not accept `calc()` in those SVG dash
+values. Browsers without the required CSS math/container support show a static
+full border. The SVG has no stretched viewBox, so its stroke and tip lengths
+stay undistorted. If a second page truly needs it, extract
+markup/styles/behavior together with a right-sized typed contract and
+before/after screenshots. Until then, keep the three simple home render paths
+explicit rather than adding a configuration-heavy component. Never nest another
+link, button or form control inside a full-entry link.
 
 ### Article, footer and socials
 
@@ -176,7 +183,8 @@ template uses this same global class.
   transitions and view-transition group animations are disabled under reduced
   motion.
 - Glitch effects are decorative and may not change accessible names. Content and
-  links work without JavaScript; home border geometry is optional enhancement.
+  links work without JavaScript; home border geometry and hover/focus drawing
+  use CSS/SVG, with a static full-border fallback.
 - Print hides shared footers, remaps palette and appends external URLs.
   Page-specific print layout stays local. Do not override shared role colors
   locally.

@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import Layout from "../layout.astro";
 import Footer from "../footer.astro";
+import Socials from "../socials.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -18,13 +19,19 @@ const { Content } = await render(post);
 ---
 
 <Layout
+  articlePage
   title={`${post.data.title} | Bogdan Chadkin`}
   description={post.data.description}
 >
   <header class="article-brand">
-    <a href="/" class="brand">
-      TrySound forked your repository
+    <a href="/" class="brand" aria-label="TrySound forked your repository">
+      <span data-article-brand aria-hidden="true">
+        TrySound forked your repository
+      </span>
     </a>
+    <div class="header-socials">
+      <Socials />
+    </div>
   </header>
 
   <main>
@@ -48,12 +55,6 @@ const { Content } = await render(post);
       >
         {post.data.title}
       </h1>
-      <p
-        class="article-description"
-        style={`view-transition-name: ${post.id}-description;`}
-      >
-        {post.data.description}
-      </p>
     </header>
 
     <div class="article-content">
@@ -64,9 +65,43 @@ const { Content } = await render(post);
   <Footer />
 </Layout>
 
+<script>
+  import { PowerGlitch } from "powerglitch";
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    PowerGlitch.glitch("[data-article-brand]", {
+      playMode: "hover",
+      timing: { duration: 600 },
+      glitchTimeSpan: { start: 0, end: 0.6 },
+      shake: { velocity: 4, amplitudeX: 0.04, amplitudeY: 0.02 },
+      slice: { count: 3, velocity: 3, minHeight: 0.02, maxHeight: 0.1 },
+    });
+  }
+</script>
+
 <style>
   .article-brand {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
     margin-bottom: 2.5rem;
+  }
+
+  .header-socials {
+    display: none;
+    margin-left: auto;
+  }
+
+  @media (min-width: 701px) {
+    .header-socials {
+      display: block;
+    }
+  }
+
+  @media print {
+    .header-socials {
+      display: none;
+    }
   }
 
   .brand {
@@ -79,6 +114,10 @@ const { Content } = await render(post);
     view-transition-name: name;
   }
 
+  [data-article-brand] {
+    display: inline-block;
+  }
+
   .brand:focus-visible {
     outline: 1px solid var(--accent);
     outline-offset: 5px;
@@ -86,8 +125,6 @@ const { Content } = await render(post);
 
   .article-header {
     margin-bottom: 2.5rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
   }
 
   .article-meta {
@@ -114,14 +151,8 @@ const { Content } = await render(post);
     text-wrap: balance;
   }
 
-  .article-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-  }
-
   .article-content {
-    font-size: 1.05rem;
+    font-size: clamp(1.125rem, 1rem + 0.3vw, 1.25rem);
     line-height: 1.7;
     text-wrap: pretty;
   }
@@ -142,6 +173,12 @@ const { Content } = await render(post);
 
   .article-content :global(p) {
     margin-bottom: 1.25rem;
+  }
+
+  .article-content :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--accent);
+    margin-block: 2.5rem;
   }
 
   .article-content :global(blockquote) {

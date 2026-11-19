@@ -63,7 +63,12 @@ import "./styles.css";
       plausible.init();
     </script>
   </head>
-  <body class:list={{ "full-width": Astro.props.fullWidth }}>
+  <body
+    class:list={{
+      "full-width": Astro.props.fullWidth,
+      "article-page": Astro.props.articlePage,
+    }}
+  >
     <slot />
   </body>
 </html>

@@ -51,6 +51,10 @@ h6 {
   font-weight: 500;
 }
 
+body.article-page {
+  max-width: 60rem;
+}
+
 body.full-width {
   max-width: 100rem;
   padding: 2rem clamp(1rem, 4vw, 5rem);

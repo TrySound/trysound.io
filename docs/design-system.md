@@ -23,6 +23,12 @@ production component gallery or additional public route.
 
 ## Colors and allowed pairings
 
+The site is dark-only. `src/layout.astro` announces the dark color scheme before
+styles load; `:root` in `src/styles.css` declares `color-scheme: only dark` for
+browser-provided UI and to opt out of automatic color-scheme overrides. This is
+not a light/dark theme switch; system light preferences do not remap the
+palette.
+
 The values live only in `src/styles.css`. Do not duplicate a palette in a JSON
 file, this guide or an agent prompt.
 

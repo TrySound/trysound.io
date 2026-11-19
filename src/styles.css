@@ -7,6 +7,8 @@
 }
 
 :root {
+  color-scheme: only dark;
+
   --font-heading: "Rajdhani", sans-serif;
   --font-body:
     "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

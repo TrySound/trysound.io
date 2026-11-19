@@ -2,7 +2,8 @@
 
 The existing site is canonical. This is a small set of Astro/CSS recipes, not a
 new framework. Keep native markup, existing visual differences and local styles
-unless sharing removes real duplication.
+unless sharing removes real duplication. Page-specific styles stay with their
+page; they are not reusable system components.
 
 ## Find the source
 
@@ -10,13 +11,10 @@ unless sharing removes real duplication.
 | ------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Shell              | [`src/layout.astro`](../src/layout.astro), [`src/styles.css`](../src/styles.css) | Document metadata, global stylesheet and slot. Typed `mode`: `default` (800px), `article` (60rem), `wide` (100rem). Modes are mutually exclusive; optional `title`/`description`.                     |
 | Fonts and type     | [`src/fonts.css`](../src/fonts.css), global CSS, page styles                     | Rajdhani 500 headings/metadata, system body font. Display, headings and prose sizes stay contextual. No downloaded body font.                                                                         |
-| Metadata           | Global `.metadata`                                                               | Muted color, heading font, 500 weight, 1rem, lowercase. Use `.metadata` alone for dates. Combine it with `.entry-meta` or `.card-subtitle` only where their additional styling is needed.             |
+| Metadata           | Global `.metadata`                                                               | Muted color, heading font, 500 weight, 1rem, lowercase. Use real `<time datetime="…">` elements for dates; the class provides typography, not date semantics.                                         |
 | Linked entry       | [`src/pages/index.astro`](../src/pages/index.astro)                              | Article wrapper, full-entry anchor, decorative border SVG, optional metadata, heading, optional summary. Home-local recipe; posts, projects and adventures keep their content/transition differences. |
-| Content card       | Global `.card*`, [`hire-me.astro`](../src/pages/hire-me.astro)                   | Article, optional full-card anchor, heading, optional metadata and description. Rounded résumé treatment, distinct from homepage entries.                                                             |
-| CTA                | Global `.cta-*`, hire page                                                       | Native navigation/mail anchor styled `.cta-button`; optionally title/text inside `.cta-section`. This is not a button behavior component.                                                             |
-| Sections and grids | Home and hire scoped styles                                                      | Section with heading, simple grid/flex wrapper and native content. Choose heading level by document outline, not visual size.                                                                         |
-| Prose              | [`src/pages/[...slug].astro`](../src/pages/[...slug].astro)                      | Content wrapper around rendered Markdown; scoped headings, lists, quotes, code and responsive images. Do not apply prose rules to cards.                                                              |
-| Footer             | [`src/footer.astro`](../src/footer.astro), hire footer                           | Home/article share RSS + socials. Hire has home backlink + socials and a dividing border. Different compositions are deliberate.                                                                      |
+| Prose              | [`src/pages/[...slug].astro`](../src/pages/[...slug].astro)                      | Content wrapper around rendered Markdown; scoped headings, lists, quotes, code and responsive images.                                                                                                 |
+| Footer             | [`src/footer.astro`](../src/footer.astro)                                        | Shared RSS link and socials for home/article pages.                                                                                                                                                   |
 | Socials            | [`src/socials.astro`](../src/socials.astro)                                      | Native nav and named anchors containing sprite SVGs; share the content rather than reproducing icon links.                                                                                            |
 | Motion and print   | Page scripts, Socials, global and page print CSS                                 | Preserve intentional timing/play-mode differences. Central palette remap; page rules handle print layout, not a parallel color palette.                                                               |
 
@@ -34,24 +32,21 @@ file, this guide or an agent prompt.
 - Actions: `--accent`, `--accent-hover`; `--border` is decorative, not a text
   role.
 - All three text roles and both accent roles are approved on all three surfaces,
-  with a minimum **4.5:1** contrast ratio. CTA text uses `--bg-primary` on
-  accent/accent-hover. Recheck these combinations in screen and print when
-  changing the palette.
+  with a minimum **4.5:1** contrast ratio. Inverse action text uses
+  `--bg-primary` on accent/accent-hover. Recheck these combinations in screen
+  and print when changing the palette.
 - Never use the decorative border color for informative text or as the only
-  focus indicator. Custom entry/card focus outlines use the accent role.
-- `--text-muted` is brightened for safe small-text use on cards; do not restore
-  the old color or dim informative metadata with opacity.
+  focus indicator. Custom entry focus outlines use the accent role.
+- Preserve small-text contrast; do not dim informative metadata with opacity.
 - Print overrides remap the same roles. New shared rules must use these roles,
-  not literal print colors. Transparent print cards sit on the document surface.
+  not literal print colors.
 
 ## Dimensions and typography
 
-Global `.metadata` is shared because four real contexts had identical styling.
-Other spacing, type and radius values remain local CSS literals where that is
-clearer. Common rhythms are 0.5, 0.75, 1, 1.25, 1.5, 2, 2.5 and 3rem; cards use
-an 8px radius and CTA sections 12px. These are observed choices, not a mandate
-to introduce a token for each number. Promote a value when several consumers
-need the same decision to change together.
+Global `.metadata` is shared because multiple real contexts have identical
+styling. Other spacing, type and radius values remain local CSS literals where
+that is clearer. Promote a value when several consumers need the same decision
+to change together, not to introduce a token for each number.
 
 - Body: system font stack, secondary text, 1.6 line height.
 - Display: home-only fluid green title; do not apply it to every page heading.
@@ -64,46 +59,6 @@ need the same decision to change together.
   background. Article-specific rules stay scoped.
 
 ## Real composition examples
-
-### Shell and content card
-
-```astro
----
-import Layout from "../layout.astro";
----
-
-<Layout title="Project notes — TrySound">
-  <main>
-    <h1>Project notes</h1>
-    <section aria-labelledby="projects-title">
-      <h2 id="projects-title" class="section-title">
-        Projects
-      </h2>
-      <article class="card">
-        <a class="card-link" href="https://github.com/TrySound/engramma">
-          <h3 class="card-title">Engramma</h3>
-          <span class="card-subtitle metadata">Design-token editor</span>
-          <p class="card-description">Live previews and style guides.</p>
-        </a>
-      </article>
-    </section>
-  </main>
-</Layout>
-```
-
-For static cards, omit the anchor and place the heading/description directly
-inside `.card`. Never put another anchor, button or form control inside
-`.card-link`. Keep real `<time datetime="…">` elements for actual dates.
-`.metadata` is a type recipe, not date semantics. A card grid needs only local
-CSS:
-
-```css
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  gap: 1.25rem;
-}
-```
 
 ### Home entry (local to the homepage)
 
@@ -128,20 +83,7 @@ to another page alone does **not** make the recipe available there. If a second
 page truly needs it, extract markup/styles/behavior together with a right-sized
 typed contract and before/after screenshots. Until then, keep the three simple
 home render paths explicit rather than adding a configuration-heavy component.
-
-### CTA and section
-
-```html
-<section class="cta-section" aria-labelledby="contact-title">
-  <h2 id="contact-title" class="cta-title">Let's build something</h2>
-  <p class="cta-text">Available for technical consulting.</p>
-  <a class="cta-button" href="mailto:me@trysound.io">Get in touch</a>
-</section>
-```
-
-Use an anchor for navigation/mail. A future action that changes application
-state needs a native button with its behavior explicitly designed; do not invent
-that API for this content site.
+Never nest another link, button or form control inside a full-entry link.
 
 ### Article, footer and socials
 
@@ -161,11 +103,11 @@ import Footer from "../footer.astro";
 </Layout>
 ```
 
-Use `Socials` directly when composing a different footer, as hire does. Keep
-link accessible names and the nav's natural document order; do not use icon
-shape alone as a name. Import it from `../socials.astro` in that alternative
-composition. Markdown/prose must render through the actual article template to
-receive its scoped typography.
+Use `Socials` directly when composing a different footer. Keep link accessible
+names and the nav's natural document order; do not use icon shape alone as a
+name. Import it from `../socials.astro` in that alternative composition.
+Markdown/prose must render through the actual article template to receive its
+scoped typography.
 
 ## Responsive, motion and accessibility contracts
 
@@ -178,24 +120,24 @@ receive its scoped typography.
   The shared body uses `overflow-wrap: anywhere` to support enlarged text. Do
   not hide horizontal overflow to conceal a sizing bug.
 - Check 320/390/700/701/1440px, enlarged text and 200% browser zoom when
-  changing layout. Review home, article and hire pages, including print
-  pagination.
+  changing layout. Review affected pages, including print pagination.
 - Language is English (`lang="en"`). Logical properties are preferred for new
   layout rules, but RTL/vertical writing are **not claimed supported**; do not
   rename every existing physical property as an unrelated cleanup.
 - Links must remain reachable in document order with visible keyboard focus.
-  Entry/card outlines supplement hover effects. Never disable outlines without
-  an equally visible, tested replacement.
+  Entry outlines supplement hover effects. Never disable outlines without an
+  equally visible, tested replacement. Use anchors for navigation/mail and
+  native buttons for actions that change application state.
 - Home glitch: automatic, 14s cycle; article brand: hover, 600ms; socials:
   hover. The three local configurations intentionally differ. Each checks
-  reduced motion on load; reload after changing the preference. CSS
-  link/card/entry transitions and view-transition group animations are disabled
-  under reduced motion.
+  reduced motion on load; reload after changing the preference. CSS link/entry
+  transitions and view-transition group animations are disabled under reduced
+  motion.
 - Glitch effects are decorative and may not change accessible names. Content and
   links work without JavaScript; home border geometry is optional enhancement.
-- Print hides footers and mail CTA, remaps palette and appends external URLs.
-  Résumé-specific rules control grid/padding/page-break behavior. Do not
-  override shared role colors locally.
+- Print hides shared footers, remaps palette and appends external URLs.
+  Page-specific print layout stays local. Do not override shared role colors
+  locally.
 
 ## Change policy
 

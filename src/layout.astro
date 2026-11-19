@@ -24,11 +24,22 @@ const description = Astro.props.description || siteDescription;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={`${Astro.site}${Astro.url.pathname}`} />
-    <meta property="og:image" content={`${Astro.site}trysound.jpg`} />
+    <meta property="og:image" content={`${Astro.site}og.png`} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="TrySound forked your repository — open source and web"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${Astro.site}trysound.jpg`} />
+    <meta name="twitter:image" content={`${Astro.site}og.png`} />
+    <meta
+      name="twitter:image:alt"
+      content="TrySound forked your repository — open source and web"
+    />
     <!-- Privacy-friendly analytics by Plausible -->
     <script
       is:inline

@@ -38,8 +38,8 @@ const { Content } = await render(post);
     </div>
   </header>
 
-  <main>
-    <header class="article-header">
+  <main class="stack-lg">
+    <header class="stack-sm">
       <div class="article-meta">
         <time
           class="metadata"
@@ -53,10 +53,7 @@ const { Content } = await render(post);
           })}
         </time>
       </div>
-      <h1
-        class="article-title heading-lg"
-        style={`view-transition-name: ${post.id}-title;`}
-      >
+      <h1 class="heading-lg" style={`view-transition-name: ${post.id}-title;`}>
         {post.data.title}
       </h1>
     </header>
@@ -88,7 +85,6 @@ const { Content } = await render(post);
     display: flex;
     align-items: center;
     gap: 2rem;
-    margin-bottom: 2.5rem;
   }
 
   .header-socials {
@@ -117,19 +113,10 @@ const { Content } = await render(post);
     display: inline-block;
   }
 
-  .article-header {
-    margin-bottom: 2.5rem;
-  }
-
   .article-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  .article-title {
-    margin-bottom: 1rem;
   }
 </style>

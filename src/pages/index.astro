@@ -77,59 +77,88 @@ const projects = [
       </h1>
     </header>
 
-    <div
-      class="columns"
-      style={`--entry-count: ${Math.max(sortedPosts.length, projects.length)};`}
-    >
-      <section aria-labelledby="posts-title">
-        <h2 id="posts-title" class="column-title label">
-          posts
-        </h2>
-        <div class="entries">
-          {sortedPosts.map((post) => (
-            <article>
-              <a href={`/${post.id}/`} class="card">
-                <svg class="card-border" aria-hidden="true">
-                  <rect width="100%" height="100%" pathLength="100" />
-                </svg>
-                <time
-                  class="metadata"
-                  style={`view-transition-name: ${post.id}-date;`}
-                  datetime={post.data.date.toISOString()}
-                >
-                  {post.data.date.toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </time>
-                <h3
-                  class="heading-md"
-                  style={`view-transition-name: ${post.id}-title;`}
-                >
-                  {post.data.title}
-                </h3>
-                <p
-                  class="text-body"
-                  style={`view-transition-name: ${post.id}-description;`}
-                >
-                  {post.data.description}
-                </p>
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
+    <div class="stack-lg">
+      <div
+        class="columns"
+        style={`--entry-count: ${Math.max(sortedPosts.length, projects.length)};`}
+      >
+        <section aria-labelledby="posts-title">
+          <h2 id="posts-title" class="column-title label">
+            posts
+          </h2>
+          <div class="entries">
+            {sortedPosts.map((post) => (
+              <article>
+                <a href={`/${post.id}/`} class="card">
+                  <svg class="card-border" aria-hidden="true">
+                    <rect width="100%" height="100%" pathLength="100" />
+                  </svg>
+                  <time
+                    class="metadata"
+                    style={`view-transition-name: ${post.id}-date;`}
+                    datetime={post.data.date.toISOString()}
+                  >
+                    {post.data.date.toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+                  <h3
+                    class="heading-md"
+                    style={`view-transition-name: ${post.id}-title;`}
+                  >
+                    {post.data.title}
+                  </h3>
+                  <p
+                    class="text-body"
+                    style={`view-transition-name: ${post.id}-description;`}
+                  >
+                    {post.data.description}
+                  </p>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
 
-      <section class="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title" class="column-title label">
-          my projects
+        <section class="projects" aria-labelledby="projects-title">
+          <h2 id="projects-title" class="column-title label">
+            my projects
+          </h2>
+          <div class="entries">
+            {projects.map((project) => (
+              <article>
+                <a
+                  href={project.href}
+                  class="card"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg class="card-border" aria-hidden="true">
+                    <rect width="100%" height="100%" pathLength="100" />
+                  </svg>
+                  <span class="metadata">
+                    {project.role} · {project.period}
+                  </span>
+                  <h3 class="heading-md">{project.name}</h3>
+                  <p class="text-body">{project.description}</p>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <section class="stack-md" aria-labelledby="adventures-title">
+        <h2 id="adventures-title" class="column-title label">
+          open source adventures
         </h2>
-        <div class="entries">
-          {projects.map((project) => (
+        <div class="adventure-grid">
+          {adventures.map((adventure) => (
             <article>
               <a
-                href={project.href}
+                href={adventure.href}
                 class="card"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -138,42 +167,15 @@ const projects = [
                   <rect width="100%" height="100%" pathLength="100" />
                 </svg>
                 <span class="metadata">
-                  {project.role} · {project.period}
+                  {adventure.role} · {adventure.period}
                 </span>
-                <h3 class="heading-md">{project.name}</h3>
-                <p class="text-body">{project.description}</p>
+                <h3 class="heading-md">{adventure.name}</h3>
               </a>
             </article>
           ))}
         </div>
       </section>
     </div>
-
-    <section class="adventures" aria-labelledby="adventures-title">
-      <h2 id="adventures-title" class="column-title label">
-        open source adventures
-      </h2>
-      <div class="adventure-grid">
-        {adventures.map((adventure) => (
-          <article>
-            <a
-              href={adventure.href}
-              class="card"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg class="card-border" aria-hidden="true">
-                <rect width="100%" height="100%" pathLength="100" />
-              </svg>
-              <span class="metadata">
-                {adventure.role} · {adventure.period}
-              </span>
-              <h3 class="heading-md">{adventure.name}</h3>
-            </a>
-          </article>
-        ))}
-      </div>
-    </section>
   </main>
 
   <div class="footer-container">
@@ -214,7 +216,7 @@ const projects = [
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: auto repeat(var(--entry-count), auto);
-    gap: 1rem 1.25rem;
+    gap: var(--space-md);
   }
 
   .columns > section {
@@ -223,18 +225,13 @@ const projects = [
     grid-template-rows: subgrid;
   }
 
-  .adventures {
-    margin-top: 4rem;
-  }
-
   .adventure-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem 1.25rem;
+    gap: var(--space-md);
   }
 
   .column-title {
-    margin-bottom: 1.75rem;
     padding-inline: clamp(1.25rem, 2vw, 2rem);
   }
 
@@ -242,6 +239,7 @@ const projects = [
     display: grid;
     grid-row: 2 / -1;
     grid-template-rows: subgrid;
+    gap: var(--space-md);
   }
 
   .projects .card-border,
@@ -257,18 +255,18 @@ const projects = [
     .columns {
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: none;
-      gap: 3rem;
+      gap: var(--space-lg);
     }
 
     .columns > section {
-      display: block;
       grid-row: auto;
+      grid-template-rows: none;
+      row-gap: var(--space-md);
     }
 
     .entries {
       grid-row: auto;
       grid-template-rows: none;
-      gap: 1rem;
     }
 
     .adventure-grid {

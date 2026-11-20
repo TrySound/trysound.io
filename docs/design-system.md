@@ -11,6 +11,7 @@ page; they are not reusable system components.
 | ------------------ | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Shell              | [`src/layout.astro`](../src/layout.astro), [`src/styles.css`](../src/styles.css)                   | Document metadata, global stylesheet and slot. Typed `mode`: `default` (800px), `article` (60rem), `wide` (100rem). Modes are mutually exclusive; optional `title`/`description`. |
 | Fonts and type     | [`src/fonts.css`](../src/fonts.css), global CSS, page styles                                       | Shared family primitives, semantic typography variables, and text-treatment classes in global CSS. No downloaded body font.                                                       |
+| Vertical rhythm    | [Stack utilities in `src/styles.css`](../src/styles.css), [migration plan](stack-migration.md)     | `.stack-sm`, `.stack-md`, `.stack-lg` own spacing between direct children; nest stacks for different grouping levels.                                                             |
 | Metadata           | Global `.metadata`                                                                                 | Muted color, shared metadata typography, lowercase. Use real `<time datetime="…">` elements for dates; the class provides typography, not date semantics.                         |
 | Linked card        | [`src/styles.css`](../src/styles.css), [`src/pages/index.astro`](../src/pages/index.astro)         | Shared `.card` link and `.card-border` SVG, composed with existing text classes. Posts, projects and adventures retain local layout, orientation and transition names.            |
 | Prose              | [`src/styles.css`](../src/styles.css), [`src/pages/[...slug].astro`](../src/pages/[...slug].astro) | Shared `.prose` wrapper around native Markdown; headings, lists, quotes, code, links and responsive images.                                                                       |
@@ -88,8 +89,9 @@ without page-local typography overrides or a second numeric scale. Shared text
 classes consume the roles and add color, wrapping, transformation, and
 decoration. Page-local classes retain layout, focus treatments, view
 transitions, and behavior. Heading classes and native headings within `.prose`
-use balanced wrapping; prose and descriptions use pretty wrapping. Spacing and
-radius values stay local except within the shared prose recipe.
+use balanced wrapping; prose and descriptions use pretty wrapping. Vertical UI
+rhythm uses the shared stack utilities below. Other layout spacing and radius
+values stay local except within the shared prose recipe.
 
 | Class / selector           | Token role       | Treatment and current use                                     |
 | -------------------------- | ---------------- | ------------------------------------------------------------- |
@@ -119,6 +121,58 @@ remain native emphasis. Code has an explicit normal weight and prose-compatible
 leading; CSS-wide `inherit` is not stored in root custom properties, where it
 would inherit the custom property itself rather than the consuming font
 property. Syntax highlighting remains responsible for code-token colors.
+
+### Vertical rhythm: stacks
+
+[`src/styles.css`](../src/styles.css) defines `.stack-sm`, `.stack-md`, and
+`.stack-lg`, consuming `--space-sm`, `--space-md`, and `--space-lg`
+respectively. The source owns the spacing values; do not maintain a second
+numeric scale here. Use small for closely related content, medium for groups,
+and large for major sections. These are spacing choices, not semantic heading
+levels.
+
+Each utility creates a single-column grid with `minmax(0, 1fr)` and
+`grid-auto-rows: max-content`. Its `gap` separates **direct children only**:
+there is no leading or trailing space. The zero track minimum allows the column
+to shrink; descendants still need wrapping or overflow handling. Grid items'
+margins do not collapse, and stacks do not reset existing child margins.
+
+```html
+<section class="stack-md" aria-labelledby="section-title">
+  <h2 id="section-title" class="label">Section title</h2>
+  <div class="stack-sm">
+    <h3 class="heading-md">Group title</h3>
+    <p class="text-body">Related supporting copy.</p>
+  </div>
+</section>
+```
+
+- Put one stack size on the existing semantic parent. Add a wrapper only when it
+  represents a real grouping with a different rhythm; keep heading order and
+  link semantics intact.
+- Remove the child margins that previously supplied those same boundaries in the
+  same change. Nest stacks for mixed rhythms rather than adding per-child
+  spacing overrides. Moving from old values to the scale is a visual change, not
+  a pixel-identical refactor.
+- Do not combine a stack with a competing flex, multi-column, or subgrid layout
+  on the same element. Keep those layout recipes local. A stack can contain a
+  grid as one child without changing that grid's internal layout.
+- Keep padding for inset space, auto margins for alignment, and intentional
+  local geometry. Stacks replace inter-item vertical margins, not every margin
+  or every `gap`.
+- Do not put a stack on `.prose` as a shortcut: its contextual descendant
+  margins would remain and add to the gaps. Markdown spacing stays with the
+  prose recipe pending a separate review.
+- `.card` already owns its internal grid and spacing. Keep its shared recipe as
+  the single owner rather than adding a stack class to each card.
+
+Home and article pages now use stacks for page boundaries; articles also use
+small stacks for date/title spacing, and adventures uses a medium stack for its
+heading/grid boundary. Post/project columns consume `--space-md` for that same
+boundary while retaining subgrid; both homepage grids also use `--space-md` for
+column gaps and spacing between entries. See the
+[stack migration record](stack-migration.md) for retained exceptions and review
+gates.
 
 ### Shared prose recipe
 
@@ -190,8 +244,18 @@ import Footer from "../footer.astro";
 ---
 
 <Layout mode="article" title="An article — TrySound">
-  <main>
-    <h1 class="heading-lg">An article</h1>
+  <header>
+    <a href="/" class="link">
+      TrySound
+    </a>
+  </header>
+  <main class="stack-lg">
+    <header class="stack-sm">
+      <time class="metadata" datetime="2025-01-01">
+        January 1, 2025
+      </time>
+      <h1 class="heading-lg">An article</h1>
+    </header>
     <div class="prose">
       <p>Page content stays semantic.</p>
     </div>
@@ -199,6 +263,12 @@ import Footer from "../footer.astro";
   <Footer />
 </Layout>
 ```
+
+This abbreviated example shows the article's spacing structure; the real article
+template retains its brand treatment, metadata row, responsive header socials,
+and transition names. Layout applies `.stack-lg` directly to `body`, which owns
+page-level spacing between its slotted children; no outer page wrapper is
+needed. Footer owns its internal row and padding.
 
 Use `Socials` directly when composing a different footer. Keep link accessible
 names and the nav's natural document order; do not use icon shape alone as a

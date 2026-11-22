@@ -70,12 +70,10 @@
 
   --bg-primary: #0a0a0a;
   --bg-secondary: #141414;
-  --bg-tertiary: #1a1a1a;
   --text-primary: #fafafa;
   --text-secondary: #d4d4d4;
   --text-muted: #858585;
   --accent: #22c55e;
-  --accent-hover: #16a34a;
   --border: #262626;
 
   --space-sm: 0.75rem;
@@ -201,7 +199,7 @@ body {
   line-height: var(--heading-xl-leading);
   letter-spacing: var(--heading-xl-tracking);
   text-wrap: balance;
-  text-shadow: 0 0 40px rgb(34 197 94 / 15%);
+  text-shadow: 0 0 40px color-mix(in srgb, var(--accent) 15%, transparent);
 }
 
 .display-sm,
@@ -399,7 +397,7 @@ body {
   }
 
   &:is(:hover, :focus-visible) {
-    background-color: rgb(34 197 94 / 3%);
+    background-color: color-mix(in srgb, var(--accent) 3%, transparent);
 
     @media (prefers-reduced-motion: no-preference) {
       transition-delay: var(--card-border-duration);
@@ -415,7 +413,9 @@ body {
 
     .card-border {
       opacity: 1;
-      filter: drop-shadow(0 0 5px rgb(34 197 94 / 40%));
+      filter: drop-shadow(
+        0 0 5px color-mix(in srgb, var(--accent) 40%, transparent)
+      );
 
       rect {
         stroke-dasharray: 100 0;

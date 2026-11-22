@@ -33,19 +33,37 @@ palette.
 The values live only in `src/styles.css`. Do not duplicate a palette in a JSON
 file, this guide or an agent prompt.
 
-- Surfaces: `--bg-primary`, `--bg-secondary`, `--bg-tertiary`.
+- Surfaces: `--bg-primary`, `--bg-secondary`.
 - Normal text: `--text-primary` (headings/strong), `--text-secondary` (body and
   supporting copy), `--text-muted` (metadata and blockquotes).
-- Actions: `--accent`, `--accent-hover`; `--border` is decorative, not a text
-  role.
-- All three text roles and both accent roles are approved on all three surfaces,
-  with a minimum **4.5:1** contrast ratio. Inverse action text uses
-  `--bg-primary` on accent/accent-hover. Recheck these combinations when
-  changing the palette.
+- Actions: `--accent`; `--border` is decorative, not a text role.
+- All three text roles and the accent role are approved on both surfaces, with a
+  minimum **4.5:1** contrast ratio. Inverse action text uses `--bg-primary` on
+  `--accent`. Recheck these combinations when changing the palette.
 - Never use the decorative border color for informative text or as the only
   focus indicator. Focus outlines use the accent role through the shared outline
   variables.
 - Preserve small-text contrast; do not dim informative metadata with opacity.
+
+### Palette architecture
+
+Color roles in `src/styles.css` intentionally hold values directly. For this
+single-site palette, adding a primitive alias for every role would add names
+without sharing decisions or simplifying customization. Consumers should use
+semantic roles rather than hardcoded copies of their colors.
+
+Add a palette primitive only when multiple roles genuinely share an ingredient
+that should change together—not merely because their current values match.
+Font-family primitives already serve this purpose across typography roles. This
+is an accepted deviation from a complete three-tier token architecture, not a
+claim that all three tiers exist. Revisit it if real customization needs
+introduce shared palette decisions.
+
+The display glow, card hover/focus fill and card-border glow derive their colors
+from `--accent` with `color-mix(in srgb, …, transparent)`; their opacity and
+geometry stay local to the recipes. The three card texture stripe colors remain
+fixed art direction, not accent-derived colors. Revisit them separately when
+recoloring the site; static icons also need the asset workflow below.
 
 ## Site icons
 

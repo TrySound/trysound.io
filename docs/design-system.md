@@ -288,11 +288,14 @@ and transition names. Layout applies `.stack-lg` directly to `body`, which owns
 page-level spacing between its slotted children; no outer page wrapper is
 needed. Footer owns its internal row and padding.
 
-Use `Socials` directly when composing a different footer. Keep link accessible
-names and the nav's natural document order; do not use icon shape alone as a
-name. Import it from `../socials.astro` in that alternative composition. Wrap
-rendered Markdown in `.prose` to receive the shared content recipe. The article
-template uses this same global class.
+Use `Socials` directly when composing a different footer, with its required
+native `aria-label`: `<Socials aria-label="Footer socials" />`. The article
+header uses `aria-label="Header socials"` so both navigation landmarks are
+distinguishable when visible together. Keep link accessible names and the nav's
+natural document order; do not use icon shape alone as a name. Import it from
+`../socials.astro` in that alternative composition. Wrap rendered Markdown in
+`.prose` to receive the shared content recipe. The article template uses this
+same global class.
 
 ## Responsive, motion and accessibility contracts
 

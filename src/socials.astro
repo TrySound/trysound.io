@@ -1,4 +1,12 @@
-<nav data-socials>
+---
+interface Props {
+  "aria-label": string;
+}
+
+const { "aria-label": label } = Astro.props;
+---
+
+<nav data-socials aria-label={label}>
   <a target="_blank" href="https://github.com/TrySound" aria-label="GitHub">
     <svg>
       <use href="/icon.svg#github"></use>
